@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Drip Store — Premium Streetwear</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/shop.html">Shop</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/track-order.html">Track Order</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="/search.html" class="nav-icon">🔍</a>
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow">New Season — SS 2026</p>
+    <h1>Wear the<br/><em>Culture.</em><br/>Own the Look.</h1>
+    <p class="hero-sub">Premium streetwear crafted for those who dress with purpose. 105+ styles. Free shipping above ₹999.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="location.href='/shop.html'">Shop Now →</button>
+      <button class="btn-outline" onclick="location.href='/about.html'">Our Story</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">105+</div><div class="stat-l">Styles</div></div>
+      <div><div class="stat-n">50K+</div><div class="stat-l">Customers</div></div>
+      <div><div class="stat-n">Free</div><div class="stat-l">Shipping ₹999+</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img">
+      <div class="hero-badge">
+        <div style="font-size:1.3rem;font-weight:700;font-family:'Playfair Display',serif">New</div>
+        <div style="font-size:0.6rem;letter-spacing:0.1em">Drop</div>
+      </div>
+      <svg viewBox="0 0 260 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:200px;opacity:0.6">
+        <path d="M95 40 L165 40 L185 90 L155 88 L155 300 L105 300 L105 88 L75 90 Z" fill="#e8e0d0" stroke="#c9a84c" stroke-width="1"/>
+        <path d="M75 90 L30 70 L48 140 L75 125 Z" fill="#ddd8cc" stroke="#c9a84c" stroke-width="0.5"/>
+        <path d="M185 90 L230 70 L212 140 L185 125 Z" fill="#ddd8cc" stroke="#c9a84c" stroke-width="0.5"/>
+        <path d="M112 92 Q130 112 148 92" stroke="#c9a84c" stroke-width="1" fill="none"/>
+        <text x="130" y="185" text-anchor="middle" font-family="'Playfair Display',serif" font-size="18" fill="#c9a84c" letter-spacing="6" opacity="0.5">DRIP</text>
+      </svg>
+      <div class="hero-tag">
+        <div style="font-size:0.62rem;color:#b8860b;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px">Featured</div>
+        <div style="font-size:0.88rem;font-weight:500">Drop Shoulder Tee — ₹1,299</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Premium Quality</span><span class="gold">◆</span>
+    <span>Free Shipping ₹999+</span><span class="gold">◆</span>
+    <span>105+ Styles</span><span class="gold">◆</span>
+    <span>Pan-India Delivery</span><span class="gold">◆</span>
+    <span>14-Day Returns</span><span class="gold">◆</span>
+    <span>New Drop SS 2026</span><span class="gold">◆</span>
+    <span>Premium Quality</span><span class="gold">◆</span>
+    <span>Free Shipping ₹999+</span><span class="gold">◆</span>
+    <span>105+ Styles</span><span class="gold">◆</span>
+    <span>Pan-India Delivery</span><span class="gold">◆</span>
+    <span>14-Day Returns</span><span class="gold">◆</span>
+    <span>New Drop SS 2026</span><span class="gold">◆</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" style="padding:4rem 5vw">
+  <div class="section-head">
+    <div><p class="eyebrow">Browse By</p><h2>Shop Categories</h2></div>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card" onclick="location.href='/shop.html?category=Tops'">
+      <div class="cat-icon">👕</div><div class="cat-name">Tops & Tees</div><div class="cat-count">25 styles</div>
+    </div>
+    <div class="cat-card" onclick="location.href='/shop.html?category=Hoodies'">
+      <div class="cat-icon">🧥</div><div class="cat-name">Hoodies</div><div class="cat-count">15 styles</div>
+    </div>
+    <div class="cat-card" onclick="location.href='/shop.html?category=Bottoms'">
+      <div class="cat-icon">👖</div><div class="cat-name">Bottoms</div><div class="cat-count">20 styles</div>
+    </div>
+    <div class="cat-card" onclick="location.href='/shop.html?category=Outerwear'">
+      <div class="cat-icon">🧤</div><div class="cat-name">Outerwear</div><div class="cat-count">15 styles</div>
+    </div>
+    <div class="cat-card" onclick="location.href='/shop.html?category=Accessories'">
+      <div class="cat-icon">🎒</div><div class="cat-name">Accessories</div><div class="cat-count">15 styles</div>
+    </div>
+    <div class="cat-card" onclick="location.href='/shop.html?category=Footwear'">
+      <div class="cat-icon">👟</div><div class="cat-name">Footwear</div><div class="cat-count">15 styles</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="section" style="padding:0 5vw 4rem">
+  <div class="section-head">
+    <div><p class="eyebrow">Latest Drop</p><h2>New Arrivals</h2></div>
+    <a href="/shop.html" class="btn-outline">View All →</a>
+  </div>
+  <div class="prod-grid" id="homeGrid">
+    <div class="prod-card skeleton"></div>
+    <div class="prod-card skeleton"></div>
+    <div class="prod-card skeleton"></div>
+    <div class="prod-card skeleton"></div>
+  </div>
+</section>
+
+<!-- WHY DRIP -->
+<section class="why-section">
+  <div class="section-head" style="text-align:center;flex-direction:column;align-items:center">
+    <p class="eyebrow">Why Choose Us</p><h2>The Drip Difference</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🚚</div><h4>Free Shipping</h4><p>On all orders above ₹999. Pan-India delivery in 3–5 days.</p></div>
+    <div class="why-card"><div class="why-icon">↩️</div><h4>Easy Returns</h4><p>14-day hassle-free returns. No questions asked.</p></div>
+    <div class="why-card"><div class="why-icon">✨</div><h4>Premium Quality</h4><p>240 GSM fabrics, double stitched seams, OEKO-TEX certified.</p></div>
+    <div class="why-card"><div class="why-icon">💳</div><h4>Secure Payments</h4><p>UPI, Card, Net Banking, and Cash on Delivery available.</p></div>
+    <div class="why-card"><div class="why-icon">🎁</div><h4>Gift Wrapping</h4><p>Beautiful packaging — perfect for gifts. Just ask at checkout.</p></div>
+    <div class="why-card"><div class="why-icon">📞</div><h4>24/7 Support</h4><p>Real humans. Chat, email or call us anytime.</p></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Be First. Every Drop.</h2>
+  <p>Join 50,000+ subscribers who never miss a new collection.</p>
+  <div class="nl-form">
+    <input type="email" id="nlEmail" placeholder="your@email.com"/>
+    <button onclick="subscribe()">Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom:0.75rem">DRIP<span>.</span></div>
+      <p style="color:#999;font-size:0.85rem;line-height:1.7;max-width:220px">Premium streetwear. Based in Delhi, delivered pan-India.</p>
+      <div class="social-row">
+        <a href="#" class="social-btn">ig</a><a href="#" class="social-btn">tw</a><a href="#" class="social-btn">fb</a>
+      </div>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <ul><li><a href="/shop.html">All Products</a></li><li><a href="/shop.html?badge=New">New Arrivals</a></li><li><a href="/shop.html?badge=Sale">Sale</a></li></ul>
+    </div>
+    <div>
+      <h5>Help</h5>
+      <ul><li><a href="/track-order.html">Track Order</a></li><li><a href="/returns.html">Returns</a></li><li><a href="/contact.html">Contact Us</a></li></ul>
+    </div>
+    <div>
+      <h5>Company</h5>
+      <ul><li><a href="/about.html">About</a></li><li><a href="/contact.html">Careers</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Drip Store. All rights reserved.</span>
+    <span>Valid coupons: DRIP20 · FLAT200 · FIRST10 · WELCOME</span>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script src="/static/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  updateNav();
+  refreshCart();
+  // load 8 products for homepage
+  try {
+    const res = await fetch('/api/products?per_page=8&sort=newest');
+    const data = await res.json();
+    const grid = document.getElementById('homeGrid');
+    grid.innerHTML = data.items.map(renderCard).join('');
+  } catch(e) {}
+});
+function subscribe() {
+  const email = document.getElementById('nlEmail').value.trim();
+  if (!email.includes('@')) { showToast('Please enter a valid email'); return; }
+  showToast('Subscribed! Welcome to Drip Store 🎉', 'success');
+  document.getElementById('nlEmail').value = '';
+}
+</script>
+</body>
+</html>

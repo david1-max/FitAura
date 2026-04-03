@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>404 — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <div class="nav-right">
+    <a href="/shop.html" class="btn-gold">Shop →</a>
+  </div>
+</nav>
+<div class="notfound">
+  <div class="notfound-num">404</div>
+  <h2>This Page Dropped Out of Stock</h2>
+  <p>The page you are looking for does not exist or has been moved. Let us get you back on track.</p>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+    <button class="btn-gold btn-lg" onclick="location.href='/'">Go to Homepage</button>
+    <button class="btn-outline btn-lg" onclick="location.href='/shop.html'">Browse Shop</button>
+  </div>
+</div>
+<div id="toast"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

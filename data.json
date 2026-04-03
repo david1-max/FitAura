@@ -1,0 +1,2655 @@
+{
+  "users": [
+    {
+      "id": "0eda63c3-0fc4-41a5-a67e-95e6595b0d79",
+      "first_name": "David",
+      "last_name": "Kumar",
+      "email": "davidkumar817@gmail.com",
+      "phone": "+91 8107586071",
+      "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+      "token": "ff0a2dcd24eecef2bc841a16e8fc2a2d5ee9fcaef7187a50679396d785e9969b",
+      "is_admin": true,
+      "created_at": "2026-03-19"
+    },
+    {
+      "id": "c7dfe9b5-717c-4eda-9e28-e694e3dc8efd",
+      "first_name": "Raj",
+      "last_name": "Kanoi",
+      "email": "raj12@gmail.com",
+      "phone": "+91 1234567890",
+      "password": "0e8e32ff6bb9be4ba6b330995391097ee91262da5c49aff07da4fe61db6e2c17",
+      "token": "fb86a26f30d420905f8c52569644acbf482bb1526e550b9e44deb470ee646643",
+      "created_at": "2026-03-23"
+    }
+  ],
+  "carts": {
+    "0eda63c3-0fc4-41a5-a67e-95e6595b0d79": [
+      {
+        "id": "30d23d12-fd98-4be4-bad9-c4b42bff1a7b",
+        "product_id": 48,
+        "quantity": 1,
+        "size": "L",
+        "color": "Black"
+      }
+    ],
+    "c7dfe9b5-717c-4eda-9e28-e694e3dc8efd": []
+  },
+  "wishlists": {},
+  "orders": [
+    {
+      "id": "6b00ca0e-1234-4eef-9c5c-36d31bb6e858",
+      "order_number": "DS73909982",
+      "user_id": "0eda63c3-0fc4-41a5-a67e-95e6595b0d79",
+      "user_name": "David Kumar",
+      "user_email": "davidkumar817@gmail.com",
+      "items": [
+        {
+          "product_id": 28,
+          "name": "Oversized Zip Hoodie",
+          "qty": 1,
+          "size": "",
+          "color": "",
+          "price": 2299,
+          "total": 2299
+        },
+        {
+          "product_id": 3,
+          "name": "Linen Blend Casual Shirt",
+          "qty": 2,
+          "size": "",
+          "color": "",
+          "price": 1899,
+          "total": 3798
+        }
+      ],
+      "address": {
+        "line1": "122, Sitarampuri Colony",
+        "city": "Jaipur",
+        "state": "Rajasthan",
+        "pincode": "302013"
+      },
+      "payment_method": "cod",
+      "coupon": "",
+      "subtotal": 6097,
+      "discount": 0,
+      "delivery": 49,
+      "tax": 1106.28,
+      "total": 7252.28,
+      "status": "Delivered",
+      "placed_at": "2026-03-19 14:16"
+    },
+    {
+      "id": "57a30b99-c6f8-4a9e-930a-8c9ac3fb335d",
+      "order_number": "DS73911953",
+      "user_id": "0eda63c3-0fc4-41a5-a67e-95e6595b0d79",
+      "user_name": "David Kumar",
+      "user_email": "davidkumar817@gmail.com",
+      "items": [
+        {
+          "product_id": 63,
+          "name": "Oversized Denim Jacket",
+          "qty": 1,
+          "size": "",
+          "color": "",
+          "price": 3200,
+          "total": 3200
+        }
+      ],
+      "address": {
+        "line1": "122 , Sitarampuri Colony",
+        "city": "Jaipur",
+        "state": "Rajasthan",
+        "pincode": "302013"
+      },
+      "payment_method": "cod",
+      "coupon": "",
+      "subtotal": 3200,
+      "discount": 0,
+      "delivery": 49,
+      "tax": 584.82,
+      "total": 3833.82,
+      "status": "Delivered",
+      "placed_at": "2026-03-19 14:49"
+    },
+    {
+      "id": "ef657cfe-ca6d-4129-a3b8-854d640ea683",
+      "order_number": "DS74272497",
+      "user_id": "c7dfe9b5-717c-4eda-9e28-e694e3dc8efd",
+      "user_name": "Raj Kanoi",
+      "user_email": "raj12@gmail.com",
+      "items": [
+        {
+          "product_id": 67,
+          "name": "Quilted Jacket",
+          "qty": 1,
+          "size": "",
+          "color": "",
+          "price": 3499,
+          "total": 3499
+        },
+        {
+          "product_id": 66,
+          "name": "Varsity Jacket",
+          "qty": 1,
+          "size": "",
+          "color": "",
+          "price": 3999,
+          "total": 3999
+        },
+        {
+          "product_id": 69,
+          "name": "Sherpa Jacket",
+          "qty": 1,
+          "size": "",
+          "color": "",
+          "price": 3799,
+          "total": 3799
+        },
+        {
+          "product_id": 68,
+          "name": "Coach Jacket",
+          "qty": 1,
+          "size": "",
+          "color": "",
+          "price": 2599,
+          "total": 2599
+        }
+      ],
+      "address": {
+        "line1": "Budsu",
+        "city": "Kuchaman",
+        "state": "Rajastahn",
+        "pincode": "302015"
+      },
+      "payment_method": "cod",
+      "coupon": "",
+      "subtotal": 13896,
+      "discount": 0,
+      "delivery": 49,
+      "tax": 2510.1,
+      "total": 16455.1,
+      "status": "Delivered",
+      "placed_at": "2026-03-23 18:58"
+    },
+    {
+      "id": "1916247d-9a8d-4e52-a1e1-29b6da5c7e59",
+      "order_number": "DS75203967",
+      "user_id": "c7dfe9b5-717c-4eda-9e28-e694e3dc8efd",
+      "user_name": "Raj Kanoi",
+      "user_email": "raj12@gmail.com",
+      "items": [
+        {
+          "product_id": 26,
+          "name": "Essential Pullover Hoodie",
+          "qty": 1,
+          "size": "",
+          "color": "",
+          "price": 1999,
+          "total": 1999
+        },
+        {
+          "product_id": 27,
+          "name": "Premium Crewneck Sweatshirt",
+          "qty": 1,
+          "size": "",
+          "color": "",
+          "price": 1699,
+          "total": 1699
+        },
+        {
+          "product_id": 28,
+          "name": "Oversized Zip Hoodie",
+          "qty": 1,
+          "size": "L",
+          "color": "Black",
+          "price": 2299,
+          "total": 2299
+        },
+        {
+          "product_id": 76,
+          "name": "Drip Signature Cap",
+          "qty": 1,
+          "size": "One Size",
+          "color": "Black",
+          "price": 799,
+          "total": 799
+        }
+      ],
+      "address": {
+        "line1": "122,",
+        "city": "jaipuer",
+        "state": "up",
+        "pincode": "302021"
+      },
+      "payment_method": "cod",
+      "coupon": "",
+      "subtotal": 6796,
+      "discount": 0,
+      "delivery": 49,
+      "tax": 1232.1,
+      "total": 8077.1,
+      "status": "Delivered",
+      "placed_at": "2026-04-03 13:42"
+    }
+  ],
+  "coupons": [
+    {
+      "code": "DRIP20",
+      "type": "percent",
+      "value": 20,
+      "min_order": 999
+    },
+    {
+      "code": "FLAT200",
+      "type": "flat",
+      "value": 200,
+      "min_order": 1999
+    },
+    {
+      "code": "FIRST10",
+      "type": "percent",
+      "value": 10,
+      "min_order": 0
+    },
+    {
+      "code": "WELCOME",
+      "type": "percent",
+      "value": 15,
+      "min_order": 999
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Signature Drop Shoulder Tee",
+      "slug": "signature-drop-shoulder-tee",
+      "price": 1299,
+      "original_price": 1799,
+      "category": "Tops",
+      "badge": "New",
+      "rating": 4.2,
+      "stock": 150,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Sand Tan",
+        "Forest Green",
+        "Navy"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Vintage Wash Oversized Tee",
+      "slug": "vintage-wash-oversized-tee",
+      "price": 1199,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "Hot",
+      "rating": 4.5,
+      "stock": 120,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Vintage Black",
+        "Vintage Grey",
+        "Vintage Brown"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Linen Blend Casual Shirt",
+      "slug": "linen-blend-casual-shirt",
+      "price": 1899,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "New",
+      "rating": 4.7,
+      "stock": 90,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "White",
+        "Blue",
+        "Sand",
+        "Olive"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Drip Graphic Tee Vol.2",
+      "slug": "drip-graphic-tee-vol2",
+      "price": 999,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.0,
+      "stock": 200,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "White"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pima Cotton Box Tee",
+      "slug": "pima-cotton-box-tee",
+      "price": 1599,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 110,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Cream",
+        "Sage",
+        "Dusty Rose"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Drip Classic Logo Tee",
+      "slug": "drip-classic-logo-tee",
+      "price": 899,
+      "original_price": 1199,
+      "category": "Tops",
+      "badge": "Sale",
+      "rating": 4.3,
+      "stock": 180,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Navy"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Ribbed Henley Shirt",
+      "slug": "ribbed-henley-shirt",
+      "price": 1399,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 75,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Cream",
+        "Charcoal",
+        "Olive"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Tie-Dye Resort Tee",
+      "slug": "tie-dye-resort-tee",
+      "price": 1149,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "Hot",
+      "rating": 4.4,
+      "stock": 95,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Blue Tie Dye",
+        "Orange Tie Dye",
+        "Purple Tie Dye"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Striped Boxy Tee",
+      "slug": "striped-boxy-tee",
+      "price": 1249,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.0,
+      "stock": 100,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black/White",
+        "Navy/White",
+        "Olive/Cream"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Cut & Sew Panel Tee",
+      "slug": "cut-sew-panel-tee",
+      "price": 1499,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "New",
+      "rating": 4.3,
+      "stock": 70,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Cream",
+        "Olive"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Essential White Tee",
+      "slug": "essential-white-tee",
+      "price": 699,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.5,
+      "stock": 250,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "3XL"
+      ],
+      "colors": [
+        "White",
+        "Off White"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Essential Black Tee",
+      "slug": "essential-black-tee",
+      "price": 699,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.5,
+      "stock": 250,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "3XL"
+      ],
+      "colors": [
+        "Black",
+        "Charcoal"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Drip Embroidered Tee",
+      "slug": "drip-embroidered-tee",
+      "price": 1449,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "New",
+      "rating": 4.6,
+      "stock": 80,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Cream"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Washed Denim Shirt",
+      "slug": "washed-denim-shirt",
+      "price": 2499,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.4,
+      "stock": 55,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Light Wash",
+        "Dark Wash",
+        "Medium Wash"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Relaxed Fit Polo",
+      "slug": "relaxed-fit-polo",
+      "price": 1699,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 100,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "White",
+        "Navy",
+        "Sage",
+        "Black"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Resort Linen Shirt",
+      "slug": "resort-linen-shirt",
+      "price": 2199,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.6,
+      "stock": 60,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Beige",
+        "Sky Blue",
+        "Olive"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Heavyweight Core Tee",
+      "slug": "heavyweight-core-tee",
+      "price": 1349,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 100,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Beige",
+        "Forest Green",
+        "Dusty Blue"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Cuban Collar Shirt",
+      "slug": "cuban-collar-shirt",
+      "price": 1999,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 65,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Navy",
+        "Cream"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Terry Cloth Polo",
+      "slug": "terry-cloth-polo",
+      "price": 1799,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "Hot",
+      "rating": 4.3,
+      "stock": 70,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Navy",
+        "Sage"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Drip Typography Tee",
+      "slug": "drip-typography-tee",
+      "price": 999,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.0,
+      "stock": 130,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Sand"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Cropped Boxy Tee",
+      "slug": "cropped-boxy-tee",
+      "price": 999,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 90,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Blush"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Baseball Collar Tee",
+      "slug": "baseball-collar-tee",
+      "price": 1199,
+      "original_price": 1499,
+      "category": "Tops",
+      "badge": "Sale",
+      "rating": 4.2,
+      "stock": 90,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black/White",
+        "Blue/White",
+        "Red/White"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Acid Wash Tee",
+      "slug": "acid-wash-tee",
+      "price": 1099,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 85,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Blue",
+        "Brown"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Longline Layered Tee",
+      "slug": "longline-layered-tee",
+      "price": 1099,
+      "original_price": null,
+      "category": "Tops",
+      "badge": null,
+      "rating": 3.8,
+      "stock": 80,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Grey"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Mesh Overlay Tee",
+      "slug": "mesh-overlay-tee",
+      "price": 1299,
+      "original_price": null,
+      "category": "Tops",
+      "badge": "Hot",
+      "rating": 3.9,
+      "stock": 65,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "White"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Essential Pullover Hoodie",
+      "slug": "essential-pullover-hoodie",
+      "price": 1999,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 150,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Grey",
+        "White",
+        "Forest Green"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Premium Crewneck Sweatshirt",
+      "slug": "premium-crewneck-sweatshirt",
+      "price": 1699,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "New",
+      "rating": 4.3,
+      "stock": 120,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Charcoal",
+        "Cream",
+        "Navy"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Oversized Zip Hoodie",
+      "slug": "oversized-zip-hoodie",
+      "price": 2299,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "Hot",
+      "rating": 4.5,
+      "stock": 100,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Grey",
+        "Navy",
+        "Olive"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Vintage Fleece Hoodie",
+      "slug": "vintage-fleece-hoodie",
+      "price": 2199,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": null,
+      "rating": 4.4,
+      "stock": 90,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Vintage Black",
+        "Vintage Grey",
+        "Vintage Brown"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Heavyweight Hoodie",
+      "slug": "heavyweight-hoodie",
+      "price": 2499,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "New",
+      "rating": 4.6,
+      "stock": 85,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Beige",
+        "Forest Green",
+        "Navy"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Tech Fleece Hoodie",
+      "slug": "tech-fleece-hoodie",
+      "price": 2799,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "Hot",
+      "rating": 4.5,
+      "stock": 70,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Half Zip Sweatshirt",
+      "slug": "half-zip-sweatshirt",
+      "price": 1999,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "New",
+      "rating": 4.3,
+      "stock": 95,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Cream",
+        "Grey",
+        "Black",
+        "Navy"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Cropped Hoodie",
+      "slug": "cropped-hoodie",
+      "price": 1699,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": null,
+      "rating": 4.2,
+      "stock": 80,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Blush",
+        "Lavender"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Drip Embroidered Hoodie",
+      "slug": "drip-embroidered-hoodie",
+      "price": 2399,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "New",
+      "rating": 4.7,
+      "stock": 75,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Forest Green"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "French Terry Sweatshirt",
+      "slug": "french-terry-sweatshirt",
+      "price": 1899,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 100,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Grey",
+        "Black",
+        "Cream",
+        "Sage"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Sherpa Lined Hoodie",
+      "slug": "sherpa-lined-hoodie",
+      "price": 2999,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "Limited",
+      "rating": 4.8,
+      "stock": 40,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Grey"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Drip Graphic Hoodie",
+      "slug": "drip-graphic-hoodie",
+      "price": 2199,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "Hot",
+      "rating": 4.4,
+      "stock": 90,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Grey"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Quarter Zip Fleece",
+      "slug": "quarter-zip-fleece",
+      "price": 2299,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "New",
+      "rating": 4.3,
+      "stock": 70,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Navy",
+        "Grey",
+        "Olive",
+        "Cream"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Oversized Crewneck",
+      "slug": "oversized-crewneck",
+      "price": 1799,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": null,
+      "rating": 4.2,
+      "stock": 110,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Beige",
+        "Grey",
+        "Sage"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Tie-Dye Hoodie",
+      "slug": "tie-dye-hoodie",
+      "price": 2099,
+      "original_price": null,
+      "category": "Hoodies",
+      "badge": "Hot",
+      "rating": 4.3,
+      "stock": 60,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Blue Tie Dye",
+        "Purple Tie Dye",
+        "Orange Tie Dye"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Wide Leg Cargo Pants",
+      "slug": "wide-leg-cargo-pants",
+      "price": 2499,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "Hot",
+      "rating": 4.6,
+      "stock": 120,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Olive",
+        "Black",
+        "Khaki",
+        "Grey"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Tapered Jogger Pants",
+      "slug": "tapered-jogger-pants",
+      "price": 1499,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.0,
+      "stock": 150,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Grey",
+        "Olive",
+        "Navy"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Utility Cargo Shorts",
+      "slug": "utility-cargo-shorts",
+      "price": 1299,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "New",
+      "rating": 4.2,
+      "stock": 130,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Khaki",
+        "Grey",
+        "Olive"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Slim Fit Chinos",
+      "slug": "slim-fit-chinos",
+      "price": 1999,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.3,
+      "stock": 100,
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36"
+      ],
+      "colors": [
+        "Beige",
+        "Navy",
+        "Olive",
+        "Black"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Relaxed Fit Jeans",
+      "slug": "relaxed-fit-jeans",
+      "price": 2299,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 90,
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36"
+      ],
+      "colors": [
+        "Light Wash",
+        "Dark Wash",
+        "Black"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Track Pants",
+      "slug": "track-pants",
+      "price": 1399,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 140,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Grey"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Linen Drawstring Pants",
+      "slug": "linen-drawstring-pants",
+      "price": 1799,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 80,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Beige",
+        "White",
+        "Olive",
+        "Navy"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Cargo Joggers",
+      "slug": "cargo-joggers",
+      "price": 1699,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "Hot",
+      "rating": 4.3,
+      "stock": 110,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Olive",
+        "Grey"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Athletic Shorts",
+      "slug": "athletic-shorts",
+      "price": 999,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.0,
+      "stock": 180,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Grey",
+        "Olive"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "French Terry Sweatpants",
+      "slug": "french-terry-sweatpants",
+      "price": 1599,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 120,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Grey",
+        "Black",
+        "Cream",
+        "Navy"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Wide Leg Trousers",
+      "slug": "wide-leg-trousers",
+      "price": 2199,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.3,
+      "stock": 75,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Beige",
+        "Black",
+        "Olive",
+        "Navy"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Corduroy Pants",
+      "slug": "corduroy-pants",
+      "price": 2099,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 65,
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36"
+      ],
+      "colors": [
+        "Brown",
+        "Navy",
+        "Olive",
+        "Black"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "Barrel Leg Jeans",
+      "slug": "barrel-leg-jeans",
+      "price": 2499,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "New",
+      "rating": 4.6,
+      "stock": 60,
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34"
+      ],
+      "colors": [
+        "Light Wash",
+        "Medium Wash",
+        "Dark Wash"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Pleated Trousers",
+      "slug": "pleated-trousers",
+      "price": 2299,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.4,
+      "stock": 70,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Beige",
+        "Black",
+        "Navy",
+        "Grey"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "Stretch Cargo Shorts",
+      "slug": "stretch-cargo-shorts",
+      "price": 1199,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "Hot",
+      "rating": 4.2,
+      "stock": 130,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Olive",
+        "Khaki",
+        "Navy"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Pinstripe Trousers",
+      "slug": "pinstripe-trousers",
+      "price": 2399,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 55,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black/White",
+        "Navy/White",
+        "Grey/White"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Lounge Shorts",
+      "slug": "lounge-shorts",
+      "price": 799,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.0,
+      "stock": 200,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Grey",
+        "Black",
+        "Navy",
+        "Cream"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Slim Cargos",
+      "slug": "slim-cargos",
+      "price": 1799,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 100,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Olive",
+        "Khaki"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "Printed Board Shorts",
+      "slug": "printed-board-shorts",
+      "price": 1299,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": "Hot",
+      "rating": 4.1,
+      "stock": 100,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Blue Print",
+        "Black Print",
+        "Olive Print"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Straight Leg Pants",
+      "slug": "straight-leg-pants",
+      "price": 1999,
+      "original_price": null,
+      "category": "Bottoms",
+      "badge": null,
+      "rating": 4.2,
+      "stock": 95,
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Beige",
+        "Grey"
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Drip Bomber Jacket",
+      "slug": "drip-bomber-jacket",
+      "price": 3360,
+      "original_price": 4799,
+      "category": "Outerwear",
+      "badge": "Limited",
+      "rating": 4.8,
+      "stock": 40,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Drip Track Jacket",
+      "slug": "drip-track-jacket",
+      "price": 2799,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "New",
+      "rating": 4.3,
+      "stock": 70,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive",
+        "White"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Oversized Denim Jacket",
+      "slug": "oversized-denim-jacket",
+      "price": 3200,
+      "original_price": 4299,
+      "category": "Outerwear",
+      "badge": "Sale",
+      "rating": 4.6,
+      "stock": 50,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Light Wash",
+        "Dark Wash",
+        "Black"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Puffer Vest",
+      "slug": "puffer-vest",
+      "price": 2499,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 80,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive",
+        "Cream"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Windbreaker Jacket",
+      "slug": "windbreaker-jacket",
+      "price": 2999,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "Hot",
+      "rating": 4.5,
+      "stock": 65,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Red",
+        "Olive"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Varsity Jacket",
+      "slug": "varsity-jacket",
+      "price": 3999,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "Limited",
+      "rating": 4.7,
+      "stock": 35,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black/White",
+        "Navy/White",
+        "Black/Gold"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Quilted Jacket",
+      "slug": "quilted-jacket",
+      "price": 3499,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 55,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive",
+        "Cream"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Coach Jacket",
+      "slug": "coach-jacket",
+      "price": 2599,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": null,
+      "rating": 4.3,
+      "stock": 75,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Sherpa Jacket",
+      "slug": "sherpa-jacket",
+      "price": 3799,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "Hot",
+      "rating": 4.7,
+      "stock": 45,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Brown",
+        "Cream",
+        "Black",
+        "Grey"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "Leather Biker Jacket",
+      "slug": "leather-biker-jacket",
+      "price": 5999,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "Limited",
+      "rating": 4.9,
+      "stock": 25,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Rain Jacket",
+      "slug": "rain-jacket",
+      "price": 3299,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 60,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive",
+        "Red"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Corduroy Jacket",
+      "slug": "corduroy-jacket",
+      "price": 2999,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 50,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Brown",
+        "Navy",
+        "Black",
+        "Olive"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Harrington Jacket",
+      "slug": "harrington-jacket",
+      "price": 2799,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "Hot",
+      "rating": 4.3,
+      "stock": 65,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive",
+        "Cream"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Suede Overshirt",
+      "slug": "suede-overshirt",
+      "price": 3199,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": "New",
+      "rating": 4.6,
+      "stock": 40,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Tan",
+        "Brown",
+        "Black",
+        "Olive"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "Lightweight Puffer",
+      "slug": "lightweight-puffer",
+      "price": 3499,
+      "original_price": null,
+      "category": "Outerwear",
+      "badge": null,
+      "rating": 4.5,
+      "stock": 60,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Black",
+        "Navy",
+        "Olive",
+        "Cream"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "Drip Signature Cap",
+      "slug": "drip-signature-cap",
+      "price": 799,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": "Limited",
+      "rating": 4.5,
+      "stock": 100,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Tan",
+        "Navy",
+        "Olive"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "Drip Crossbody Bag",
+      "slug": "drip-crossbody-bag",
+      "price": 1200,
+      "original_price": 1499,
+      "category": "Accessories",
+      "badge": "Sale",
+      "rating": 4.4,
+      "stock": 80,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan",
+        "Olive"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "Drip Beanie",
+      "slug": "drip-beanie",
+      "price": 599,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": "New",
+      "rating": 4.6,
+      "stock": 150,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "Grey",
+        "Cream",
+        "Navy",
+        "Forest Green"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Canvas Tote Bag",
+      "slug": "canvas-tote-bag",
+      "price": 799,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": null,
+      "rating": 4.3,
+      "stock": 120,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Natural",
+        "Black",
+        "Navy",
+        "Olive"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "Leather Belt",
+      "slug": "leather-belt",
+      "price": 899,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": null,
+      "rating": 4.5,
+      "stock": 100,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "Drip Bucket Hat",
+      "slug": "drip-bucket-hat",
+      "price": 699,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": "Hot",
+      "rating": 4.4,
+      "stock": 90,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Beige",
+        "Olive",
+        "Navy"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Sunglasses",
+      "slug": "drip-sunglasses",
+      "price": 1299,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": "New",
+      "rating": 4.3,
+      "stock": 70,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black Frame",
+        "Tortoiseshell",
+        "Gold Frame"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Drip Backpack",
+      "slug": "drip-backpack",
+      "price": 2499,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": "New",
+      "rating": 4.6,
+      "stock": 55,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "Olive",
+        "Navy",
+        "Brown"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "Socks 3-Pack",
+      "slug": "drip-socks-3pack",
+      "price": 499,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": null,
+      "rating": 4.4,
+      "stock": 250,
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Multi"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "Chain Necklace",
+      "slug": "drip-chain-necklace",
+      "price": 1499,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": "New",
+      "rating": 4.3,
+      "stock": 60,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Gold",
+        "Silver"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "Drip Wallet",
+      "slug": "drip-wallet",
+      "price": 1199,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": null,
+      "rating": 4.5,
+      "stock": 80,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "Trucker Hat",
+      "slug": "trucker-hat",
+      "price": 649,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": "Hot",
+      "rating": 4.2,
+      "stock": 110,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Grey",
+        "Navy"
+      ]
+    },
+    {
+      "id": 88,
+      "name": "Drip Duffel Bag",
+      "slug": "drip-duffel-bag",
+      "price": 2999,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 45,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "Olive",
+        "Navy"
+      ]
+    },
+    {
+      "id": 89,
+      "name": "Knit Scarf",
+      "slug": "knit-scarf",
+      "price": 899,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": null,
+      "rating": 4.4,
+      "stock": 90,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "Grey",
+        "Cream",
+        "Navy"
+      ]
+    },
+    {
+      "id": 90,
+      "name": "Cord Bracelet",
+      "slug": "cord-bracelet",
+      "price": 399,
+      "original_price": null,
+      "category": "Accessories",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 150,
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Navy",
+        "Olive"
+      ]
+    },
+    {
+      "id": 91,
+      "name": "Drip Sneaker Low",
+      "slug": "drip-sneaker-low",
+      "price": 3499,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "New",
+      "rating": 4.7,
+      "stock": 80,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Grey",
+        "Cream"
+      ]
+    },
+    {
+      "id": 92,
+      "name": "Canvas Slip-Ons",
+      "slug": "canvas-slip-ons",
+      "price": 1999,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": null,
+      "rating": 4.3,
+      "stock": 100,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Navy",
+        "Olive"
+      ]
+    },
+    {
+      "id": 93,
+      "name": "Chunky Boots",
+      "slug": "chunky-boots",
+      "price": 4999,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "Hot",
+      "rating": 4.6,
+      "stock": 50,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan"
+      ]
+    },
+    {
+      "id": 94,
+      "name": "Drip Slides",
+      "slug": "drip-slides",
+      "price": 999,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 120,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Brown",
+        "Olive"
+      ]
+    },
+    {
+      "id": 95,
+      "name": "High Top Sneakers",
+      "slug": "high-top-sneakers",
+      "price": 3999,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "Limited",
+      "rating": 4.8,
+      "stock": 40,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Red"
+      ]
+    },
+    {
+      "id": 96,
+      "name": "Leather Derby Shoes",
+      "slug": "leather-derby-shoes",
+      "price": 4499,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 45,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan"
+      ]
+    },
+    {
+      "id": 97,
+      "name": "Mule Sandals",
+      "slug": "mule-sandals",
+      "price": 1799,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": null,
+      "rating": 4.3,
+      "stock": 75,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan",
+        "White"
+      ]
+    },
+    {
+      "id": 98,
+      "name": "Running Sneakers",
+      "slug": "running-sneakers",
+      "price": 3299,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "Hot",
+      "rating": 4.6,
+      "stock": 90,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "White/Black",
+        "Black/Red",
+        "Navy/White"
+      ]
+    },
+    {
+      "id": 99,
+      "name": "Chelsea Boots",
+      "slug": "chelsea-boots",
+      "price": 4299,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "New",
+      "rating": 4.7,
+      "stock": 40,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan"
+      ]
+    },
+    {
+      "id": 100,
+      "name": "Platform Sneakers",
+      "slug": "platform-sneakers",
+      "price": 3799,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "Hot",
+      "rating": 4.5,
+      "stock": 55,
+      "sizes": [
+        "UK 5",
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Cream"
+      ]
+    },
+    {
+      "id": 101,
+      "name": "Desert Boots",
+      "slug": "desert-boots",
+      "price": 3599,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "New",
+      "rating": 4.4,
+      "stock": 50,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "Tan",
+        "Brown",
+        "Black"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "Loafers",
+      "slug": "drip-loafers",
+      "price": 3299,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": null,
+      "rating": 4.3,
+      "stock": 60,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10"
+      ],
+      "colors": [
+        "Black",
+        "Brown",
+        "Tan"
+      ]
+    },
+    {
+      "id": 103,
+      "name": "Suede Sneakers",
+      "slug": "suede-sneakers",
+      "price": 2999,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "New",
+      "rating": 4.5,
+      "stock": 65,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "Grey",
+        "Navy",
+        "Olive",
+        "Cream"
+      ]
+    },
+    {
+      "id": 104,
+      "name": "Flip Flops",
+      "slug": "drip-flip-flops",
+      "price": 699,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": null,
+      "rating": 4.1,
+      "stock": 150,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Brown",
+        "Navy"
+      ]
+    },
+    {
+      "id": 105,
+      "name": "Hiking Boots",
+      "slug": "hiking-boots",
+      "price": 5499,
+      "original_price": null,
+      "category": "Footwear",
+      "badge": "New",
+      "rating": 4.8,
+      "stock": 35,
+      "sizes": [
+        "UK 6",
+        "UK 7",
+        "UK 8",
+        "UK 9",
+        "UK 10",
+        "UK 11"
+      ],
+      "colors": [
+        "Brown/Tan",
+        "Black/Grey",
+        "Olive/Black"
+      ]
+    }
+  ]
+}

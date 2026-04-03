@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cart — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body><nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/shop.html">Shop</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/track-order.html">Track Order</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="/search.html" class="nav-icon">🔍</a>
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="/">Home</a> › <span>Cart</span></div>
+  <h1 class="page-title">Your Cart</h1>
+  <p class="page-sub" id="cartSub"></p>
+</div>
+<div class="cart-wrap">
+  <div>
+    <div class="cart-header-row">
+      <span>Product</span><span>Price</span><span>Quantity</span><span>Total</span><span></span>
+    </div>
+    <div id="cartItems"></div>
+    <div class="coupon-wrap">
+      <input class="coupon-input" type="text" id="couponInput" placeholder="Enter coupon code (e.g. DRIP20)"/>
+      <button class="coupon-apply" onclick="applyCoupon()">Apply</button>
+    </div>
+  </div>
+  <div>
+    <div class="order-box">
+      <h3>Order Summary</h3>
+      <div class="sum-row"><span>Subtotal</span><span id="sumSubtotal">₹0</span></div>
+      <div class="sum-row"><span>Discount</span><span id="sumDiscount" style="color:#2e7d32">₹0</span></div>
+      <div class="sum-row"><span>GST (18%)</span><span id="sumGst">₹0</span></div>
+      <div class="sum-row"><span>Shipping</span><span style="color:#2e7d32">Free above ₹999</span></div>
+      <div class="sum-total"><span>Total</span><span class="sum-total-val" id="sumTotal">₹0</span></div>
+      <p class="sum-saving" id="sumSaving" style="display:none"></p>
+      <button class="btn-gold btn-full btn-lg" onclick="location.href='/checkout.html'" style="margin-top:1rem">Proceed to Checkout →</button>
+      <p class="sum-note">Free delivery on orders above ₹999.</p>
+      <div class="payment-badges">
+        <span class="pay-badge">VISA</span><span class="pay-badge">MC</span><span class="pay-badge">UPI</span><span class="pay-badge">COD</span><span class="pay-badge">Paytm</span>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem;line-height:1.7;max-width:220px">Premium streetwear. Delhi to pan-India.</p><div class="social-row"><a href="#" class="social-btn">ig</a><a href="#" class="social-btn">tw</a><a href="#" class="social-btn">fb</a></div></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li><li><a href="/shop.html?badge=New">New Arrivals</a></li><li><a href="/shop.html?badge=Sale">Sale</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/track-order.html">Track Order</a></li><li><a href="/returns.html">Returns</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span><span style="color:#555">Coupons: DRIP20 · FLAT200 · FIRST10 · WELCOME</span></div>
+</footer><div id="toast"></div>
+<script src="/static/app.js"></script>
+
+<script>
+let cartDiscount = 0;
+async function loadCart() {
+  if (!isLoggedIn()) { document.getElementById('cartItems').innerHTML = '<div style="text-align:center;padding:3rem"><p style="font-size:1.1rem;margin-bottom:1rem">Please login to view cart</p><button class="btn-gold" onclick="location.href='/login.html'">Login →</button></div>'; return; }
+  try {
+    const data = await api('GET', '/cart');
+    renderCart(data);
+  } catch(e) { showToast(e.message, 'error'); }
+}
+function renderCart(data) {
+  const sub = data.subtotal;
+  const disc = cartDiscount;
+  const gst = Math.round((sub - disc) * 0.18);
+  const total = sub - disc + gst;
+  document.getElementById('cartSub').textContent = data.item_count + ' item(s) in your cart';
+  document.getElementById('sumSubtotal').textContent = rupee(sub);
+  document.getElementById('sumDiscount').textContent = disc > 0 ? '-' + rupee(disc) : '₹0';
+  document.getElementById('sumGst').textContent = rupee(gst);
+  document.getElementById('sumTotal').textContent = rupee(total);
+  if (disc > 0) { document.getElementById('sumSaving').style.display='block'; document.getElementById('sumSaving').textContent = 'You save ' + rupee(disc) + '!'; }
+  if (!data.items.length) {
+    document.getElementById('cartItems').innerHTML = '<div style="text-align:center;padding:3rem;background:#fff;border-radius:10px"><p style="font-size:1.2rem;font-family:'Playfair Display',serif;margin-bottom:1rem">Your cart is empty</p><button class="btn-gold" onclick="location.href='/shop.html'">Start Shopping →</button></div>';
+    return;
+  }
+  const emojis = {'Tops':'👕','Hoodies':'🧥','Bottoms':'👖','Outerwear':'🧤','Accessories':'🎒','Footwear':'👟'};
+  document.getElementById('cartItems').innerHTML = data.items.map(item => `
+    <div class="cart-item" id="ci-${item.id}">
+      <div class="cart-product-info">
+        <div class="cart-thumb">${emojis[item.product.category]||'👕'}</div>
+        <div>
+          <p class="cart-name">${item.product.name}</p>
+          <p class="cart-variant">Size: ${item.size||'—'} · Color: ${item.color||'—'}</p>
+        </div>
+      </div>
+      <span class="cart-price">${rupee(item.product.price)}</span>
+      <div class="qty-wrap">
+        <button class="qty-btn" onclick="changeQty('${item.id}',${item.quantity-1})">−</button>
+        <input class="qty-val" value="${item.quantity}" readonly/>
+        <button class="qty-btn" onclick="changeQty('${item.id}',${item.quantity+1})">+</button>
+      </div>
+      <span class="cart-total">${rupee(item.product.price * item.quantity)}</span>
+      <button class="rm-btn" onclick="removeItem('${item.id}')">×</button>
+    </div>`).join('');
+}
+async function changeQty(id, qty) {
+  if (qty < 1) { removeItem(id); return; }
+  try { const d = await api('PUT', '/cart/' + id, { quantity: qty }); renderCart(d); refreshCart(); }
+  catch(e) { showToast(e.message, 'error'); }
+}
+async function removeItem(id) {
+  try { const d = await api('DELETE', '/cart/' + id); renderCart(d); refreshCart(); showToast('Item removed'); }
+  catch(e) { showToast(e.message, 'error'); }
+}
+async function applyCoupon() {
+  const code = document.getElementById('couponInput').value.trim();
+  if (!code) { showToast('Please enter a coupon code', 'error'); return; }
+  try {
+    const c = await api('POST', '/coupon', { code });
+    if (c.type === 'percent') cartDiscount = Math.round((parseFloat(document.getElementById('sumSubtotal').textContent.replace(/[^\d]/g,'')) || 0) * c.value / 100);
+    else cartDiscount = c.value;
+    localStorage.setItem('drip_coupon', code);
+    showToast(c.message, 'success');
+    const data = await api('GET', '/cart');
+    renderCart(data);
+  } catch(e) { showToast(e.message, 'error'); }
+}
+document.addEventListener('DOMContentLoaded', loadCart);
+</script>
+</body>
+</html>

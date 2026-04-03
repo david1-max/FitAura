@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Shop — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body><nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/shop.html">Shop</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/track-order.html">Track Order</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="/search.html" class="nav-icon">🔍</a>
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="/">Home</a> › <span>Shop</span></div>
+  <h1 class="page-title">All Products</h1>
+  <p class="page-sub" id="shopSub">Loading...</p>
+</div>
+<div class="shop-wrap">
+  <aside class="sidebar">
+    <div class="filter-block">
+      <h5>Category</h5>
+      <div class="filter-opts">
+        <label class="filter-opt"><input type="radio" name="cat" value="" checked onchange="applyFilters()"> All Categories</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Tops" onchange="applyFilters()"> Tops & Tees</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Hoodies" onchange="applyFilters()"> Hoodies</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Bottoms" onchange="applyFilters()"> Bottoms</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Outerwear" onchange="applyFilters()"> Outerwear</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Accessories" onchange="applyFilters()"> Accessories</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Footwear" onchange="applyFilters()"> Footwear</label>
+      </div>
+    </div>
+    <div class="filter-block">
+      <h5>Sort By</h5>
+      <select class="sort-sel" onchange="applyFilters()" id="sortSel" style="width:100%;font-size:0.85rem">
+        <option value="newest">Newest First</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="price_desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+      </select>
+    </div>
+    <div class="filter-block">
+      <h5>Badge</h5>
+      <div class="filter-opts">
+        <label class="filter-opt"><input type="radio" name="badge" value="" checked onchange="applyFilters()"> All</label>
+        <label class="filter-opt"><input type="radio" name="badge" value="New" onchange="applyFilters()"> New Arrivals</label>
+        <label class="filter-opt"><input type="radio" name="badge" value="Hot" onchange="applyFilters()"> Hot Sellers</label>
+        <label class="filter-opt"><input type="radio" name="badge" value="Sale" onchange="applyFilters()"> On Sale</label>
+        <label class="filter-opt"><input type="radio" name="badge" value="Limited" onchange="applyFilters()"> Limited Edition</label>
+      </div>
+    </div>
+  </aside>
+  <div>
+    <div class="toolbar">
+      <p class="results-count" id="shopCount"></p>
+    </div>
+    <div class="prod-grid" id="shopGrid"></div>
+    <div class="pagination" id="shopPagination"></div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem;line-height:1.7;max-width:220px">Premium streetwear. Delhi to pan-India.</p><div class="social-row"><a href="#" class="social-btn">ig</a><a href="#" class="social-btn">tw</a><a href="#" class="social-btn">fb</a></div></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li><li><a href="/shop.html?badge=New">New Arrivals</a></li><li><a href="/shop.html?badge=Sale">Sale</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/track-order.html">Track Order</a></li><li><a href="/returns.html">Returns</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span><span style="color:#555">Coupons: DRIP20 · FLAT200 · FIRST10 · WELCOME</span></div>
+</footer><div id="toast"></div>
+<script src="/static/app.js"></script>
+
+<script>
+let currentPage = 1;
+async function applyFilters(page) {
+  currentPage = page || 1;
+  const cat   = document.querySelector('input[name=cat]:checked').value;
+  const badge = document.querySelector('input[name=badge]:checked').value;
+  const sort  = document.getElementById('sortSel').value;
+  const params = new URLSearchParams({ page: currentPage, per_page: 12, sort });
+  if (cat)   params.set('category', cat);
+  if (badge) params.set('badge', badge);
+  try {
+    const data = await api('GET', '/products?' + params.toString());
+    const grid = document.getElementById('shopGrid');
+    if (!data.items.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem;color:#999">No products found.</div>'; }
+    else grid.innerHTML = data.items.map(renderCard).join('');
+    document.getElementById('shopSub').textContent = data.total + ' products';
+    document.getElementById('shopCount').innerHTML = 'Showing <b>' + data.items.length + '</b> of <b>' + data.total + '</b> products';
+    // pagination
+    const pag = document.getElementById('shopPagination');
+    pag.innerHTML = '';
+    for (let i = 1; i <= data.pages; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'page-btn' + (i === currentPage ? ' on' : '');
+      btn.textContent = i;
+      btn.onclick = () => applyFilters(i);
+      pag.appendChild(btn);
+    }
+  } catch(e) { showToast('Failed to load products', 'error'); }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  // check URL params
+  const p = new URLSearchParams(location.search);
+  if (p.get('category')) { const r = document.querySelector('input[value="'+p.get('category')+'"]'); if(r) r.checked=true; }
+  if (p.get('badge')) { const r = document.querySelector('input[name=badge][value="'+p.get('badge')+'"]'); if(r) r.checked=true; }
+  applyFilters();
+});
+</script>
+</body>
+</html>

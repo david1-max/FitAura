@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Track Order — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links"><li><a href="/shop.html">Shop</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+  <div class="nav-right">
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+
+<div class="track-hero">
+  <p class="eyebrow" style="justify-content:center">Real-Time Updates</p>
+  <h2 style="font-family:'Playfair Display',serif;margin-bottom:0.5rem">Track Your Order</h2>
+  <p style="color:#999;margin-bottom:1.25rem">Enter your order ID to see live status</p>
+  <div class="track-form-wrap">
+    <input class="track-input" type="text" id="trackId" placeholder="Order ID — e.g. DS12345678" style="border-radius:6px 0 0 6px"/>
+    <button class="track-btn" onclick="trackOrder()">Track →</button>
+  </div>
+  <p style="font-size:0.8rem;color:#bbb;margin-top:0.6rem">You must be logged in to track orders.</p>
+</div>
+
+<div class="track-result" id="trackResult" style="display:none">
+  <div class="order-info-bar">
+    <div class="oinfo"><label>Order ID</label><span id="trNum" style="color:#b8860b;font-family:'Playfair Display',serif;font-weight:700"></span></div>
+    <div class="oinfo"><label>Placed On</label><span id="trDate"></span></div>
+    <div class="oinfo"><label>Items</label><span id="trItems"></span></div>
+    <div class="oinfo"><label>Total</label><span id="trTotal" style="color:#b8860b;font-weight:700"></span></div>
+    <div class="oinfo"><label>Status</label><span id="trStatus" style="color:#b8860b;font-weight:700"></span></div>
+  </div>
+
+  <div class="tracker">
+    <div class="track-step done" id="ts0"><div class="track-dot">✓</div><div class="track-label">Placed</div></div>
+    <div class="track-connector done" id="tc0"></div>
+    <div class="track-step done" id="ts1"><div class="track-dot">✓</div><div class="track-label">Confirmed</div></div>
+    <div class="track-connector" id="tc1"></div>
+    <div class="track-step active" id="ts2"><div class="track-dot">→</div><div class="track-label">Packing</div></div>
+    <div class="track-connector" id="tc2"></div>
+    <div class="track-step idle" id="ts3"><div class="track-dot">4</div><div class="track-label">Shipped</div></div>
+    <div class="track-connector" id="tc3"></div>
+    <div class="track-step idle" id="ts4"><div class="track-dot">✓</div><div class="track-label">Delivered</div></div>
+  </div>
+
+  <div id="trItemsList" style="background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.07);padding:1.5rem"></div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem;line-height:1.7">Premium streetwear.</p></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/returns.html">Returns</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span></div>
+</footer>
+
+<div id="toast"></div>
+<script src="/static/app.js"></script>
+<script>
+async function trackOrder(){
+  const id=document.getElementById('trackId').value.trim();
+  if(!id){showToast('Please enter your order ID','error');return;}
+  try{
+    const order=await api('GET','/track/'+id);
+    document.getElementById('trackResult').style.display='block';
+    document.getElementById('trNum').textContent=order.order_number;
+    document.getElementById('trDate').textContent=order.placed_at;
+    document.getElementById('trItems').textContent=order.items.length+' item(s)';
+    document.getElementById('trTotal').textContent=rupee(order.total);
+    document.getElementById('trStatus').textContent=order.status;
+    updateTracker(order.status);
+    document.getElementById('trItemsList').innerHTML =
+      '<h4 style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Items in this Order</h4>' +
+      order.items.map(i =>
+        '<div style="display:flex;justify-content:space-between;padding:0.6rem 0;border-bottom:1px solid #f0ece4;font-size:0.88rem">' +
+          '<div><strong>' + i.name + '</strong><br/><span style="color:#aaa;font-size:0.75rem">' + [i.size, i.color].filter(Boolean).join(' · ') + ' ×' + i.qty + '</span></div>' +
+          '<span style="color:#b8860b;font-weight:700">' + rupee(i.total) + '</span>' +
+        '</div>'
+      ).join('') +
+      '<div style="display:flex;justify-content:space-between;padding:0.75rem 0;border-top:2px solid #fdf3dc;margin-top:0.5rem;font-weight:700">' +
+        '<span>Total</span><span style="color:#b8860b;font-family:&#39;Playfair Display&#39;,serif;font-size:1.2rem">' + rupee(order.total) + '</span>' +
+      '</div>';
+    document.getElementById('trackResult').scrollIntoView({behavior:'smooth'});
+    showToast('Order found!','success');
+  }catch(e){
+    const msg = e.message || 'Order not found. Please check your order ID.';
+    showToast(msg, 'error');
+  }
+}
+
+function updateTracker(status){
+  const steps = ['Placed','Confirmed','Packing','Shipped','Delivered'];
+  const current = Math.max(0, steps.findIndex(s=>s.toLowerCase()===String(status||'').toLowerCase()));
+
+  steps.forEach((s,i)=>{
+    const stepEl = document.getElementById('ts'+i);
+    const connEl = document.getElementById('tc'+i);
+    if(!stepEl) return;
+    const dot = stepEl.querySelector('.track-dot');
+
+    if(i < current){
+      stepEl.className = 'track-step done';
+      if(dot) dot.textContent = '✓';
+      if(connEl) connEl.className = 'track-connector done';
+    } else if(i === current){
+      stepEl.className = 'track-step active';
+      if(dot) dot.textContent = '→';
+      if(connEl) connEl.className = 'track-connector';
+    } else {
+      stepEl.className = 'track-step idle';
+      if(dot) dot.textContent = (i+1).toString();
+      if(connEl) connEl.className = 'track-connector';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  updateNav();refreshCart();
+  const last=localStorage.getItem('drip_last_order');
+  if(last) document.getElementById('trackId').value=last;
+});
+document.addEventListener('keydown',e=>{if(e.key==='Enter') trackOrder();});
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Checkout — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body><nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/shop.html">Shop</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/track-order.html">Track Order</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="/search.html" class="nav-icon">🔍</a>
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="/">Home</a> › <a href="/cart.html">Cart</a> › <span>Checkout</span></div>
+  <h1 class="page-title">Checkout</h1>
+</div>
+<div class="steps">
+  <div class="step done"><div class="step-num">✓</div><span>Cart</span></div>
+  <div class="step-line done"></div>
+  <div class="step active"><div class="step-num">2</div><span>Details</span></div>
+  <div class="step-line"></div>
+  <div class="step idle"><div class="step-num">3</div><span>Payment</span></div>
+  <div class="step-line"></div>
+  <div class="step idle"><div class="step-num">4</div><span>Confirm</span></div>
+</div>
+<div class="checkout-wrap">
+  <div>
+    <!-- CONTACT -->
+    <div class="chk-box">
+      <div class="chk-head"><h4>Contact Info</h4></div>
+      <div class="chk-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem">
+          <div class="form-group"><label>First Name</label><input type="text" id="chk-fn" placeholder="Aryan"/></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="chk-ln" placeholder="Sharma"/></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" id="chk-email" placeholder="you@example.com"/></div>
+        <div class="form-group"><label>Phone</label><input type="tel" id="chk-phone" placeholder="+91 98765 43210"/></div>
+      </div>
+    </div>
+    <!-- ADDRESS -->
+    <div class="chk-box">
+      <div class="chk-head"><h4>Delivery Address</h4></div>
+      <div class="chk-body">
+        <div class="form-group"><label>Street Address</label><input type="text" id="chk-addr" placeholder="42, Sector 18, Noida"/></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem">
+          <div class="form-group"><label>City</label><input type="text" id="chk-city" placeholder="Noida"/></div>
+          <div class="form-group"><label>State</label><input type="text" id="chk-state" placeholder="Uttar Pradesh"/></div>
+        </div>
+        <div class="form-group"><label>Pincode</label><input type="text" id="chk-pin" placeholder="201301" style="max-width:180px"/></div>
+      </div>
+    </div>
+    <!-- DELIVERY -->
+    <div class="chk-box">
+      <div class="chk-head"><h4>Delivery Method</h4></div>
+      <div class="chk-body">
+        <div class="delivery-opts">
+          <div class="del-opt on" onclick="selectDel(this,'standard')">
+            <div class="del-opt-left"><input type="radio" name="del" checked/><div><div class="del-name">Standard Delivery</div><div class="del-days">3–5 business days</div></div></div>
+            <span class="del-price free">Free</span>
+          </div>
+          <div class="del-opt" onclick="selectDel(this,'express')">
+            <div class="del-opt-left"><input type="radio" name="del"/><div><div class="del-name">Express Delivery</div><div class="del-days">1–2 business days</div></div></div>
+            <span class="del-price">₹149</span>
+          </div>
+          <div class="del-opt" onclick="selectDel(this,'same_day')">
+            <div class="del-opt-left"><input type="radio" name="del"/><div><div class="del-name">Same-Day Delivery</div><div class="del-days">Delhi/NCR only · Order before 12 PM</div></div></div>
+            <span class="del-price">₹299</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- PAYMENT -->
+    <div class="chk-box">
+      <div class="chk-head"><h4>Payment Method</h4></div>
+      <div class="chk-body">
+        <div class="pay-tabs">
+          <button class="pay-tab on" onclick="switchPay('card',this)">Card</button>
+          <button class="pay-tab" onclick="switchPay('upi',this)">UPI</button>
+          <button class="pay-tab" onclick="switchPay('netbanking',this)">Net Banking</button>
+          <button class="pay-tab" onclick="switchPay('cod',this)">Cash on Delivery</button>
+        </div>
+        <div class="pay-panel on" id="pay-card">
+          <div class="form-group"><label>Card Number</label><input type="text" placeholder="4242 4242 4242 4242"/></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem">
+            <div class="form-group"><label>Expiry</label><input type="text" placeholder="MM / YY"/></div>
+            <div class="form-group"><label>CVV</label><input type="text" placeholder="•••"/></div>
+          </div>
+          <div class="form-group"><label>Name on Card</label><input type="text" placeholder="ARYAN SHARMA"/></div>
+        </div>
+        <div class="pay-panel" id="pay-upi">
+          <div class="form-group"><label>UPI ID</label><input type="text" placeholder="yourname@upi"/></div>
+        </div>
+        <div class="pay-panel" id="pay-netbanking">
+          <div class="form-group"><label>Select Bank</label><select><option>SBI</option><option>HDFC</option><option>ICICI</option><option>Axis</option><option>Kotak</option></select></div>
+        </div>
+        <div class="pay-panel" id="pay-cod">
+          <div style="background:var(--surface);border-radius:8px;padding:1rem;font-size:0.88rem;color:#666;line-height:1.6">Pay cash when your order arrives. A convenience fee of <strong>₹49</strong> applies. Max order value ₹10,000.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ORDER PANEL -->
+  <div>
+    <div class="chk-order-box">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.25rem">Order Summary</h3>
+      <div class="chk-items" id="chkItems"></div>
+      <div class="sum-row"><span>Subtotal</span><span id="chkSub">—</span></div>
+      <div class="sum-row"><span>GST (18%)</span><span id="chkGst">—</span></div>
+      <div class="sum-row"><span>Delivery</span><span id="chkDel">Free</span></div>
+      <div class="sum-total"><span>Total</span><span class="sum-total-val" id="chkTotal">—</span></div>
+      <button class="btn-gold btn-full place-btn" id="placeBtn" onclick="placeOrder()">Place Order →</button>
+      <p class="secure">🔒 Secured with SSL encryption</p>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem;line-height:1.7;max-width:220px">Premium streetwear. Delhi to pan-India.</p><div class="social-row"><a href="#" class="social-btn">ig</a><a href="#" class="social-btn">tw</a><a href="#" class="social-btn">fb</a></div></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li><li><a href="/shop.html?badge=New">New Arrivals</a></li><li><a href="/shop.html?badge=Sale">Sale</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/track-order.html">Track Order</a></li><li><a href="/returns.html">Returns</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span><span style="color:#555">Coupons: DRIP20 · FLAT200 · FIRST10 · WELCOME</span></div>
+</footer><div id="toast"></div>
+<script src="/static/app.js"></script>
+
+<script>
+let delType = 'standard';
+let payMethod = 'card';
+let chkCart = null;
+
+function selectDel(el, type) {
+  document.querySelectorAll('.del-opt').forEach(o => { o.classList.remove('on'); o.querySelector('input').checked=false; });
+  el.classList.add('on'); el.querySelector('input').checked=true; delType=type;
+}
+function switchPay(tab, btn) {
+  document.querySelectorAll('.pay-tab').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('on'));
+  btn.classList.add('on'); document.getElementById('pay-'+tab).classList.add('on'); payMethod=tab;
+}
+
+async function loadChkCart() {
+  if (!isLoggedIn()) { location.href='/login.html'; return; }
+  try {
+    const data = await api('GET', '/cart');
+    chkCart = data;
+    if (!data.items.length) { location.href='/cart.html'; return; }
+    const emojis={'Tops':'👕','Hoodies':'🧥','Bottoms':'👖','Outerwear':'🧤','Accessories':'🎒','Footwear':'👟'};
+    document.getElementById('chkItems').innerHTML = data.items.map(item =>
+      `<div class="chk-item">
+        <div class="chk-item-img">${emojis[item.product.category]||'👕'}<span class="qty-badge">${item.quantity}</span></div>
+        <div style="flex:1"><div style="font-size:0.85rem;font-weight:500">${item.product.name}</div><div style="font-size:0.75rem;color:#999">${item.size||''} ${item.color?'· '+item.color:''}</div></div>
+        <span class="chk-item-price">${rupee(item.product.price*item.quantity)}</span>
+      </div>`).join('');
+    const gst = Math.round(data.subtotal * 0.18);
+    document.getElementById('chkSub').textContent = rupee(data.subtotal);
+    document.getElementById('chkGst').textContent = rupee(gst);
+    document.getElementById('chkTotal').textContent = rupee(data.subtotal + gst);
+    // prefill from session
+    const user = getUser();
+    if (user) { document.getElementById('chk-fn').value=user.first_name||''; document.getElementById('chk-ln').value=user.last_name||''; document.getElementById('chk-email').value=user.email||''; document.getElementById('chk-phone').value=user.phone||''; }
+  } catch(e) { showToast(e.message,'error'); }
+}
+
+async function placeOrder() {
+  const addr = document.getElementById('chk-addr').value.trim();
+  const city = document.getElementById('chk-city').value.trim();
+  const state = document.getElementById('chk-state').value.trim();
+  const pin = document.getElementById('chk-pin').value.trim();
+  if (!addr || !city || !state || !pin) { showToast('Please fill in the delivery address', 'error'); return; }
+  const btn = document.getElementById('placeBtn');
+  btn.textContent = 'Placing Order...'; btn.disabled = true;
+  try {
+    const order = await api('POST', '/orders', {
+      address: { line1: addr, city, state, pincode: pin },
+      payment_method: payMethod,
+      delivery_type: delType,
+      coupon_code: localStorage.getItem('drip_coupon') || ''
+    });
+    localStorage.setItem('drip_last_order', order.order_number);
+    localStorage.removeItem('drip_coupon');
+    await refreshCart();
+    showToast('Order placed!', 'success');
+    setTimeout(() => location.href='/order-confirm.html', 800);
+  } catch(e) { showToast(e.message,'error'); btn.textContent='Place Order →'; btn.disabled=false; }
+}
+document.addEventListener('DOMContentLoaded', loadChkCart);
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Search — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links"><li><a href="/shop.html">Shop</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+  <div class="nav-right">
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+<div class="search-hero-section">
+  <div class="breadcrumb" style="margin-bottom:0.75rem"><a href="/">Home</a> › <span>Search</span></div>
+  <h1 class="page-title" style="margin-bottom:1rem">Search Products</h1>
+  <div class="search-bar-wrap">
+    <input class="search-big" type="text" id="searchInput" placeholder="Search hoodies, cargo pants, sneakers..."/>
+    <button class="search-go" onclick="doSearch()">Search</button>
+  </div>
+  <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap" id="searchMeta"></div>
+</div>
+<div style="padding:2rem 5vw 4rem">
+  <div class="prod-grid" id="searchGrid"></div>
+</div>
+<div id="suggestions" style="padding:0 5vw 3rem;border-top:1px solid var(--border);background:var(--card)">
+  <div style="padding-top:2rem">
+    <p class="eyebrow">Popular Searches</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem">
+      <span class="suggestion-chip" onclick="quickSearch('hoodies')">Hoodies</span>
+      <span class="suggestion-chip" onclick="quickSearch('cargo pants')">Cargo Pants</span>
+      <span class="suggestion-chip" onclick="quickSearch('bomber jacket')">Bomber Jacket</span>
+      <span class="suggestion-chip" onclick="quickSearch('graphic tee')">Graphic Tee</span>
+      <span class="suggestion-chip" onclick="quickSearch('sneakers')">Sneakers</span>
+      <span class="suggestion-chip" onclick="quickSearch('cap')">Caps</span>
+      <span class="suggestion-chip" onclick="quickSearch('joggers')">Joggers</span>
+      <span class="suggestion-chip" onclick="quickSearch('oversized')">Oversized</span>
+      <span class="suggestion-chip" onclick="quickSearch('linen shirt')">Linen Shirt</span>
+      <span class="suggestion-chip" onclick="quickSearch('varsity jacket')">Varsity Jacket</span>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem">Premium streetwear.</p></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span></div>
+</footer>
+<div id="toast"></div>
+<script src="/static/app.js"></script>
+<script>
+function doSearch(){
+  const q=document.getElementById('searchInput').value.trim();
+  if(!q){showToast('Please enter a search term','error');return;}
+  location.href='/search.html?q='+encodeURIComponent(q);
+}
+function quickSearch(term){document.getElementById('searchInput').value=term;doSearch();}
+document.addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+document.addEventListener('DOMContentLoaded',async()=>{
+  updateNav();refreshCart();
+  const q=new URLSearchParams(location.search).get('q');
+  if(!q) return;
+  document.getElementById('searchInput').value=q;
+  document.getElementById('suggestions').style.display='none';
+  try{
+    const data=await api('GET','/products?search='+encodeURIComponent(q)+'&per_page=24');
+    document.getElementById('searchMeta').innerHTML='<span style="font-size:0.85rem;color:#999"><b style="color:#1c1a17">'+data.total+'</b> results for "'+q+'"</span>';
+    document.getElementById('searchGrid').innerHTML=data.items.length
+      ? data.items.map(renderCard).join('')
+      : '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:#aaa">No results for "'+q+'". Try another term.</div>';
+  }catch(e){showToast('Search failed','error');}
+});
+</script>
+</body>
+</html>

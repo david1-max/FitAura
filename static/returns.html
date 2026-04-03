@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Returns &amp; Exchanges — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links"><li><a href="/shop.html">Shop</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+  <div class="nav-right">
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+
+<div class="returns-hero">
+  <div>
+    <p class="eyebrow">Our Policy</p>
+    <h1 style="font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:0.75rem">14-Day Easy Returns</h1>
+    <p style="color:#666;font-size:0.95rem;line-height:1.8;max-width:420px;margin-bottom:1.5rem">Not happy? Initiate a return within 14 days for a full refund or free exchange. We handle pickup — no extra charge.</p>
+    <div class="policy-pills">
+      <span class="policy-pill">✓ Free Returns</span>
+      <span class="policy-pill">✓ 14 Day Window</span>
+      <span class="policy-pill">✓ 5-Day Refund</span>
+      <span class="policy-pill">✓ Free Exchange</span>
+    </div>
+  </div>
+  <div class="ret-stats">
+    <div class="ret-stat"><div class="ret-stat-val">14</div><div class="ret-stat-label">Day Window</div></div>
+    <div class="ret-stat"><div class="ret-stat-val">Free</div><div class="ret-stat-label">Home Pickup</div></div>
+    <div class="ret-stat"><div class="ret-stat-val">5–7</div><div class="ret-stat-label">Days to Refund</div></div>
+    <div class="ret-stat"><div class="ret-stat-val">98%</div><div class="ret-stat-label">Approval Rate</div></div>
+  </div>
+</div>
+
+<section class="section">
+  <p class="eyebrow">Initiate a Return</p>
+  <h2 style="margin-bottom:2rem">Start Your Return</h2>
+  <div style="max-width:580px;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.07);padding:2rem">
+    <div class="form-group"><label>Order ID</label><input type="text" id="ret-id" placeholder="DS12345678"/></div>
+    <div class="form-group"><label>Email</label><input type="email" id="ret-email" placeholder="you@example.com"/></div>
+    <div class="form-group">
+      <label>Reason</label>
+      <div class="reason-grid">
+        <button class="reason-btn on" onclick="selReason(this)">Wrong size</button>
+        <button class="reason-btn" onclick="selReason(this)">Not as described</button>
+        <button class="reason-btn" onclick="selReason(this)">Defective item</button>
+        <button class="reason-btn" onclick="selReason(this)">Changed my mind</button>
+        <button class="reason-btn" onclick="selReason(this)">Wrong item received</button>
+        <button class="reason-btn" onclick="selReason(this)">Other</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Type</label>
+      <select>
+        <option>Return for Full Refund</option>
+        <option>Exchange for Different Size</option>
+        <option>Exchange for Different Color</option>
+        <option>Store Credit</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Additional Notes</label><textarea placeholder="Any extra details (optional)..."></textarea></div>
+    <button class="btn-gold btn-full btn-lg" onclick="submitReturn()">Submit Return Request →</button>
+  </div>
+</section>
+
+<div class="policy-grid">
+  <div class="policy-card">
+    <h4>Eligible for Return</h4>
+    <ul>
+      <li>Items returned within 14 days of delivery</li>
+      <li>Unworn, unwashed with original tags attached</li>
+      <li>Original packaging intact</li>
+      <li>Defective or damaged items (any time)</li>
+      <li>Wrong item delivered</li>
+    </ul>
+  </div>
+  <div class="policy-card no">
+    <h4>Not Eligible</h4>
+    <ul>
+      <li>Items returned after 14 days</li>
+      <li>Worn, washed or altered items</li>
+      <li>Items without original tags</li>
+      <li>Final sale / clearance items (unless defective)</li>
+      <li>Customized or personalized pieces</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem;line-height:1.7">Premium streetwear.</p></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/track-order.html">Track Order</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span></div>
+</footer>
+<div id="toast"></div>
+<script src="/static/app.js"></script>
+<script>
+function selReason(btn){document.querySelectorAll('.reason-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+function submitReturn(){
+  const id=document.getElementById('ret-id').value.trim();
+  const email=document.getElementById('ret-email').value.trim();
+  if(!id||!email){showToast('Please enter your Order ID and email','error');return;}
+  showToast('Return request submitted! We will email you within 4 hours.','success');
+}
+document.addEventListener('DOMContentLoaded',()=>{updateNav();refreshCart();});
+</script>
+</body>
+</html>

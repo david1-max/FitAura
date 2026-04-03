@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Wishlist — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links"><li><a href="/shop.html">Shop</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+  <div class="nav-right">
+    <a href="/search.html" class="nav-icon">🔍</a>
+    <a href="/wishlist.html" class="nav-icon" style="color:#b8860b">♥</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="/">Home</a> › <span>Wishlist</span></div>
+  <h1 class="page-title">My Wishlist</h1>
+  <p class="page-sub" id="wlSub">Items saved for later</p>
+</div>
+<div style="padding:2rem 5vw 4rem">
+  <div class="prod-grid" id="wlGrid">
+    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:#aaa">Loading...</div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem">Premium streetwear.</p></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span></div>
+</footer>
+<div id="toast"></div>
+<script src="/static/app.js"></script>
+<script>
+async function loadWishlist(){
+  const grid=document.getElementById('wlGrid');
+  if(!isLoggedIn()){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:3rem"><p style="color:#aaa;margin-bottom:1rem">Please login to view your wishlist</p><button class="btn-gold" onclick="location.href=\'/login.html\'">Login →</button></div>';return;}
+  try{
+    const items=await api('GET','/wishlist');
+    if(!items.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:3rem;color:#aaa">Wishlist is empty. <a href="/shop.html" style="color:#b8860b">Browse products</a></div>';return;}
+    document.getElementById('wlSub').textContent=items.length+' item(s) saved';
+    grid.innerHTML=items.map(item=>renderCard(item.product)).join('');
+  }catch(e){showToast(e.message,'error');}
+}
+document.addEventListener('DOMContentLoaded',loadWishlist);
+</script>
+</body>
+</html>

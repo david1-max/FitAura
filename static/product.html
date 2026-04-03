@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Product — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links"><li><a href="/shop.html">Shop</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+  <div class="nav-right">
+    <a href="/search.html" class="nav-icon">🔍</a>
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+
+<div style="padding:1rem 5vw;border-bottom:1px solid var(--border);background:var(--card)">
+  <div class="breadcrumb"><a href="/">Home</a> › <a href="/shop.html">Shop</a> › <span id="pdBreadcrumb">Product</span></div>
+</div>
+
+<div class="product-wrap" id="productWrap" style="display:none">
+  <!-- LEFT: GALLERY -->
+  <div>
+    <div class="gallery-main" id="galleryMain" style="font-size:6rem">👕</div>
+    <div class="gallery-thumbs">
+      <div class="gallery-thumb on" style="font-size:1.8rem">👕</div>
+      <div class="gallery-thumb" style="font-size:1.8rem">📦</div>
+      <div class="gallery-thumb" style="font-size:1.8rem">🏷️</div>
+      <div class="gallery-thumb" style="font-size:1.8rem">✨</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: DETAILS -->
+  <div>
+    <p class="prod-detail-cat" id="pdCat"></p>
+    <h1 class="prod-detail-title" id="pdTitle">Loading...</h1>
+    <div class="rating-row">
+      <span class="rating-stars" id="pdStars">★★★★☆</span>
+      <span id="pdRating" style="font-size:0.82rem;color:#b8860b"></span>
+      <span id="pdStock" style="font-size:0.78rem;color:#2e7d32;font-weight:600"></span>
+    </div>
+    <div style="margin-bottom:0.5rem">
+      <span class="price-big" id="pdPrice"></span>
+      <span class="price-orig" id="pdOrig" style="display:none"></span>
+      <span class="price-save" id="pdSave" style="display:none"></span>
+    </div>
+    <p style="font-size:0.78rem;color:#aaa;margin-bottom:1rem">Inclusive of all taxes · Free shipping above ₹999</p>
+    <div class="divider-line"></div>
+
+    <p class="opt-label">Color — <span id="selectedColor" style="color:#b8860b;font-weight:600;font-style:italic">Select a color</span></p>
+    <div class="color-swatches" id="colorSwatches" style="margin-bottom:1rem"></div>
+
+    <p class="opt-label">Size — <span id="selectedSize" style="color:#b8860b;font-weight:600;font-style:italic">Select a size</span></p>
+    <div class="size-opts" id="sizeOpts" style="margin-bottom:1rem"></div>
+    <div class="divider-line"></div>
+
+    <div class="add-row">
+      <div class="qty-wrap">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <input class="qty-val" id="qtyInput" value="1" readonly/>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+      <button class="btn-gold btn-full btn-lg" onclick="addToCart()">Add to Cart</button>
+    </div>
+    <button class="wish-row" id="wishRowBtn" onclick="toggleWishRow()">♡ Add to Wishlist</button>
+
+    <div class="delivery-info-box">
+      <div class="del-info-row">🚚 <div><strong>Free Delivery</strong> on orders above ₹999 · 3–5 days</div></div>
+      <div class="del-info-row">↩️ <div><strong>14-Day Returns</strong> — hassle-free</div></div>
+      <div class="del-info-row">⚡ <div><strong>Express Delivery</strong> available · ₹149</div></div>
+    </div>
+
+    <div class="offers-box">
+      <h5>Available Offers</h5>
+      <div class="offer-item">Use <strong>DRIP20</strong> for 20% off above ₹999</div>
+      <div class="offer-item">Use <strong>FLAT200</strong> for ₹200 off above ₹1999</div>
+      <div class="offer-item">Use <strong>FIRST10</strong> for 10% off your first order</div>
+    </div>
+
+    <div class="prod-tabs">
+      <button class="prod-tab on" onclick="switchTab(this,'desc')">Description</button>
+      <button class="prod-tab" onclick="switchTab(this,'materials')">Materials</button>
+      <button class="prod-tab" onclick="switchTab(this,'care')">Care</button>
+      <button class="prod-tab" onclick="switchTab(this,'specs')">Specs</button>
+    </div>
+    <div class="tab-panel on" id="tab-desc"><p>Premium quality from Drip Store. Crafted for those who dress with purpose.</p></div>
+    <div class="tab-panel" id="tab-materials"><p>60% Premium Combed Cotton · 35% Modal · 5% Elastane<br/>240 GSM fabric · OEKO-TEX certified</p></div>
+    <div class="tab-panel" id="tab-care"><p>Machine wash cold (30°C) · Do not bleach · Iron medium heat</p></div>
+    <div class="tab-panel" id="tab-specs"><table class="spec-table" id="pdSpecs"></table></div>
+  </div>
+</div>
+
+<div id="pdLoading" style="text-align:center;padding:4rem;color:#aaa">Loading product...</div>
+
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem;line-height:1.7">Premium streetwear. Delhi to pan-India.</p></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li><li><a href="/shop.html?badge=New">New Arrivals</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/track-order.html">Track Order</a></li><li><a href="/returns.html">Returns</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span></div>
+</footer>
+
+<div id="toast"></div>
+<script src="/static/app.js"></script>
+<script>
+const COLOR_MAP = {Black:'#111',White:'#f5f5f5',Navy:'#1a2a4a',Grey:'#888',Olive:'#6b6b3a','Forest Green':'#2d5a27',Cream:'#f5f0e0',Charcoal:'#333',Red:'#b22222',Brown:'#6b3a2a',Tan:'#c19a6b',Beige:'#c8ad7f',Sage:'#78866b',Sand:'#c2b280',Blush:'#e8b4b8',Lavender:'#b57bee'};
+const EMOJI = {Tops:'👕',Hoodies:'🧥',Bottoms:'👖',Outerwear:'🧤',Accessories:'🎒',Footwear:'👟'};
+let _qty=1,_size='',_color='',_wished=false,_prod=null;
+
+function changeQty(d){_qty=Math.max(1,_qty+d);document.getElementById('qtyInput').value=_qty;}
+
+function selectSize(btn,size){
+  document.querySelectorAll('.s-opt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');_size=size;
+  document.getElementById('selectedSize').textContent=size;
+}
+function selectColor(sw,color){
+  document.querySelectorAll('.c-swatch').forEach(s=>s.classList.remove('on'));
+  sw.classList.add('on');_color=color;
+  document.getElementById('selectedColor').textContent=color;
+}
+function switchTab(btn,id){
+  document.querySelectorAll('.prod-tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');document.getElementById('tab-'+id).classList.add('on');
+}
+async function addToCart(){
+  if(!_size){showToast('Please select a size','error');return;}
+  if(!isLoggedIn()){showToast('Please login first');setTimeout(()=>location.href='/login.html',1000);return;}
+  try{
+    await api('POST','/cart/add',{product_id:_prod.id,quantity:_qty,size:_size,color:_color});
+    await refreshCart();
+    showToast('Added to cart! 🛒','success');
+  }catch(e){showToast(e.message,'error');}
+}
+async function toggleWishRow(){
+  if(!isLoggedIn()){showToast('Please login first');return;}
+  const btn=document.getElementById('wishRowBtn');
+  _wished=!_wished;
+  try{
+    if(_wished){await api('POST','/wishlist/'+_prod.id,{});btn.textContent='♥ Saved to Wishlist';btn.style.color='#b8860b';btn.style.borderColor='#b8860b';showToast('Added to wishlist!','success');}
+    else{await api('DELETE','/wishlist/'+_prod.id);btn.textContent='♡ Add to Wishlist';btn.style.color='';btn.style.borderColor='';showToast('Removed from wishlist');}
+  }catch(e){_wished=!_wished;showToast(e.message,'error');}
+}
+
+document.addEventListener('DOMContentLoaded',async()=>{
+  const slug=new URLSearchParams(location.search).get('slug');
+  if(!slug){location.href='/shop.html';return;}
+  try{
+    const p=await api('GET','/products/'+slug);
+    _prod=p;
+    document.getElementById('productWrap').style.display='grid';
+    document.getElementById('pdLoading').style.display='none';
+    document.title=p.name+' — Drip Store';
+    document.getElementById('pdBreadcrumb').textContent=p.name;
+    document.getElementById('pdCat').textContent=p.category;
+    document.getElementById('pdTitle').textContent=p.name;
+    const r=Math.round(p.rating);
+    document.getElementById('pdStars').textContent='★'.repeat(r)+'☆'.repeat(5-r);
+    document.getElementById('pdRating').textContent=p.rating+'/5 rating';
+    document.getElementById('pdStock').textContent=p.stock>0?'✓ In Stock ('+p.stock+' units)':'Out of Stock';
+    document.getElementById('pdPrice').textContent=rupee(p.price);
+    if(p.original_price){
+      document.getElementById('pdOrig').textContent=rupee(p.original_price);
+      document.getElementById('pdOrig').style.display='inline';
+      document.getElementById('pdSave').textContent=Math.round((1-p.price/p.original_price)*100)+'% OFF';
+      document.getElementById('pdSave').style.display='inline';
+    }
+    // colors
+    const cs=document.getElementById('colorSwatches');
+    p.colors.forEach((c,i)=>{
+      const sw=document.createElement('div');
+      sw.className='c-swatch'+(i===0?' on':'');
+      sw.style.background=COLOR_MAP[c]||'#ccc';
+      sw.title=c;
+      sw.onclick=()=>selectColor(sw,c);
+      cs.appendChild(sw);
+    });
+    if(p.colors[0]){_color=p.colors[0];document.getElementById('selectedColor').textContent=p.colors[0];}
+    // sizes
+    const so=document.getElementById('sizeOpts');
+    p.sizes.forEach(s=>{
+      const btn=document.createElement('button');
+      btn.className='s-opt';btn.textContent=s;
+      btn.onclick=()=>selectSize(btn,s);
+      so.appendChild(btn);
+    });
+    // gallery
+    const em=EMOJI[p.category]||'👕';
+    document.getElementById('galleryMain').textContent=em;
+    document.querySelector('.gallery-thumb').textContent=em;
+    // specs
+    document.getElementById('pdSpecs').innerHTML=[
+      ['SKU','DS-'+String(p.id).padStart(4,'0')],
+      ['Category',p.category],
+      ['Available Sizes',p.sizes.join(', ')],
+      ['Colors',p.colors.join(', ')],
+      ['Stock',p.stock+' units'],
+      ['Rating',p.rating+'/5'],
+      ['Country of Origin','India']
+    ].map(([k,v])=>'<tr><td>'+k+'</td><td>'+v+'</td></tr>').join('');
+  }catch(e){showToast('Product not found','error');setTimeout(()=>location.href='/shop.html',1500);}
+});
+</script>
+</body>
+</html>

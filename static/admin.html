@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Admin Dashboard — Drip Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DRIP<span>.</span></a>
+  <ul class="nav-links"><li><a href="/shop.html">Shop</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+  <div class="nav-right">
+    <a href="/search.html" class="nav-icon">🔍</a>
+    <a href="/wishlist.html" class="nav-icon">♡</a>
+    <a href="/cart.html" class="nav-icon cart-icon">🛒<span class="cart-badge" id="cartBadge"></span></a>
+    <button class="btn-gold" id="navAccountBtn" onclick="location.href='/account.html'">Account</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="/">Home</a> › <span>Admin</span></div>
+  <h1 class="page-title">Admin Dashboard</h1>
+</div>
+
+<section class="section" style="padding:2.5rem 5vw 4rem">
+  <div class="section-head">
+    <div><p class="eyebrow">Orders</p><h2>Manage Orders</h2></div>
+    <select id="orderFilter" style="padding:0.35rem 0.65rem;border-radius:6px;border:1px solid #ddd;">
+      <option value="pending" selected>Pending deliveries</option>
+      <option value="">All statuses</option>
+      <option value="Confirmed">Confirmed</option>
+      <option value="Shipped">Shipped</option>
+      <option value="Delivered">Delivered</option>
+      <option value="Cancelled">Cancelled</option>
+    </select>
+  </div>
+
+  <div style="overflow-x:auto;">
+    <table class="orders-table" style="width:100%;max-width:1100px;margin:0 auto;">
+      <thead>
+        <tr><th>Order #</th><th>Date</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th style="width:160px">Action</th></tr>
+      </thead>
+      <tbody id="adminOrdersBody">
+        <tr><td colspan="7" style="text-align:center;padding:3rem;color:#aaa">Loading orders…</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div><div class="logo" style="margin-bottom:0.6rem">DRIP<span>.</span></div><p style="color:#999;font-size:0.85rem;line-height:1.7">Admin dashboard for order management.</p></div>
+    <div><h5>Shop</h5><ul><li><a href="/shop.html">All Products</a></li></ul></div>
+    <div><h5>Help</h5><ul><li><a href="/track-order.html">Track Order</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="/about.html">About</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Drip Store.</span></div>
+</footer>
+
+<div id="toast"></div>
+<script src="/static/app.js"></script>
+<script>
+async function requireAdmin() {
+  if (!isLoggedIn()) return location.href = '/login.html';
+  const user = getUser();
+  if (!user || !user.is_admin) {
+    showToast('Access denied', 'error');
+    return setTimeout(() => location.href = '/', 1200);
+  }
+}
+
+function renderOrders(orders) {
+  const tbody = document.getElementById('adminOrdersBody');
+  if (!orders.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:3rem;color:#aaa">No orders yet.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = orders.map(o => {
+    const date = o.placed_at.split(' ')[0];
+    const items = o.items.length;
+    const total = rupee(o.total);
+    const status = o.status;
+    const statusSelect = `
+      <select class="order-status" onchange="updateStatus('${o.order_number}', this.value)">
+        ${['Confirmed','Shipped','Delivered','Cancelled'].map(s => `<option value="${s}"${s===status?' selected':''}>${s}</option>`).join('')}
+      </select>`;
+
+    return `
+      <tr>
+        <td><strong>${o.order_number}</strong></td>
+        <td>${date}</td>
+        <td>${o.user_name}<br/><span style="font-size:0.85rem;color:#666">${o.user_email}</span></td>
+        <td>${items}</td>
+        <td><strong>${total}</strong></td>
+        <td>${statusSelect}</td>
+        <td><button class="btn-outline" onclick="viewOrder('${o.order_number}')">View</button></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function loadAdminOrders(status) {
+  try {
+    const query = status ? '?status=' + encodeURIComponent(status) : '';
+    const data = await api('GET', `/admin/orders${query}`);
+    renderOrders(data);
+  } catch (err) {
+    document.getElementById('adminOrdersBody').innerHTML = '<tr><td colspan="7" style="text-align:center;padding:3rem;color:#c62828">'+(err.message||'Failed to load orders.')+'</td></tr>';
+  }
+}
+
+async function updateStatus(orderNumber, newStatus) {
+  try {
+    await api('PUT', `/admin/orders/${orderNumber}/status`, { status: newStatus });
+    showToast('Order updated', 'success');
+    // Refresh the list so “Delivered” orders disappear from pending view
+    const filter = document.getElementById('orderFilter');
+    if (filter) loadAdminOrders(filter.value);
+  } catch (err) {
+    showToast(err.message, 'error');
+  }
+}
+
+function viewOrder(orderNumber) {
+  localStorage.setItem('drip_last_order', orderNumber);
+  location.href = '/track-order.html';
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  await requireAdmin();
+  const filter = document.getElementById('orderFilter');
+  filter.addEventListener('change', () => loadAdminOrders(filter.value));
+  loadAdminOrders(filter.value);
+});
+</script>
+</body>
+</html>
