@@ -94,6 +94,45 @@
   </div>
 </div>
 
+<div class="section" id="reviewsContainer" style="display:none;max-width:1100px;margin:0 auto 4rem;padding:0 5vw">
+  <div class="divider-line" style="margin-bottom:3rem"></div>
+  <div style="display:grid;grid-template-columns:1.2fr 1.8fr;gap:4rem;align-items:start">
+    
+    <!-- LEFT: Review submission form -->
+    <div id="addReviewFormContainer">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1rem">Write a Review</h3>
+      <div id="reviewPrompt" style="display:none;color:#888;font-size:0.9rem;margin-bottom:1rem">
+        Please <a href="/login.html" style="color:var(--gold);text-decoration:underline">login</a> to write a customer review.
+      </div>
+      <form id="reviewForm" onsubmit="submitReview(event)" style="display:none;background:#fff;padding:1.5rem;border-radius:10px;border:1px solid var(--border);box-shadow:var(--shadow)">
+        <div class="form-group">
+          <label>Rating</label>
+          <select id="reviewRating" style="width:100%;font-size:0.9rem;font-weight:600">
+            <option value="5">5 ★★★★★</option>
+            <option value="4">4 ★★★★☆</option>
+            <option value="3">3 ★★★☆☆</option>
+            <option value="2">2 ★★☆☆☆</option>
+            <option value="1">1 ★☆☆☆☆</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Comment</label>
+          <textarea id="reviewComment" placeholder="Share your experience with this product... Quality, fit, size, etc." required style="min-height:100px"></textarea>
+        </div>
+        <button class="btn-gold btn-full" type="submit">Submit Review</button>
+      </form>
+    </div>
+    
+    <!-- RIGHT: Reviews list -->
+    <div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1.5rem">Customer Reviews</h3>
+      <div id="reviewsList" style="display:flex;flex-direction:column;gap:1.5rem">
+        <p style="color:#aaa;font-style:italic">No reviews yet. Be the first to review this product!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="pdLoading" style="text-align:center;padding:4rem;color:#aaa">Loading product...</div>
 
 <footer>
@@ -172,6 +211,19 @@ document.addEventListener('DOMContentLoaded',async()=>{
       document.getElementById('pdSave').textContent=Math.round((1-p.price/p.original_price)*100)+'% OFF';
       document.getElementById('pdSave').style.display='inline';
     }
+    // Check wishlist status
+    if(isLoggedIn()){
+      try{
+        const wishlist=await api('GET','/wishlist');
+        const isWished=wishlist.some(item=>item.product_id===p.id);
+        if(isWished){
+          _wished=true;
+          const btn=document.getElementById('wishRowBtn');
+          btn.textContent='♥ Saved to Wishlist';
+          btn.style.color='#b8860b';btn.style.borderColor='#b8860b';
+        }
+      }catch(e){}
+    }
     // colors
     const cs=document.getElementById('colorSwatches');
     p.colors.forEach((c,i)=>{
@@ -193,8 +245,13 @@ document.addEventListener('DOMContentLoaded',async()=>{
     });
     // gallery
     const em=EMOJI[p.category]||'👕';
-    document.getElementById('galleryMain').textContent=em;
-    document.querySelector('.gallery-thumb').textContent=em;
+    if (p.image_url) {
+      document.getElementById('galleryMain').innerHTML = `<img src="${p.image_url}" style="width:100%;height:100%;object-fit:cover"/>`;
+      document.querySelector('.gallery-thumb').innerHTML = `<img src="${p.image_url}" style="width:100%;height:100%;object-fit:cover"/>`;
+    } else {
+      document.getElementById('galleryMain').textContent=em;
+      document.querySelector('.gallery-thumb').textContent=em;
+    }
     // specs
     document.getElementById('pdSpecs').innerHTML=[
       ['SKU','DS-'+String(p.id).padStart(4,'0')],
@@ -205,8 +262,69 @@ document.addEventListener('DOMContentLoaded',async()=>{
       ['Rating',p.rating+'/5'],
       ['Country of Origin','India']
     ].map(([k,v])=>'<tr><td>'+k+'</td><td>'+v+'</td></tr>').join('');
+    
+    // Load reviews
+    loadReviews(p.id);
+    document.getElementById('reviewsContainer').style.display = 'block';
+    if(isLoggedIn()){
+      document.getElementById('reviewForm').style.display = 'block';
+    }else{
+      document.getElementById('reviewPrompt').style.display = 'block';
+    }
   }catch(e){showToast('Product not found','error');setTimeout(()=>location.href='/shop.html',1500);}
 });
+
+async function loadReviews(productId) {
+  try {
+    const reviews = await api('GET', `/products/${productId}/reviews`);
+    renderReviews(reviews);
+  } catch(e) {}
+}
+
+function renderReviews(reviews) {
+  const list = document.getElementById('reviewsList');
+  if (!reviews.length) {
+    list.innerHTML = '<p style="color:#aaa;font-style:italic">No reviews yet. Be the first to review this product!</p>';
+    return;
+  }
+  
+  list.innerHTML = reviews.map(r => {
+    const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+    return `
+      <div style="border-bottom:1px solid #eee;padding-bottom:1rem">
+        <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem">
+          <strong>${r.user_name}</strong>
+          <span style="font-size:0.75rem;color:#888">${r.created_at}</span>
+        </div>
+        <div style="color:var(--gold);margin-bottom:0.5rem;font-size:0.85rem">${stars}</div>
+        <p style="font-size:0.9rem;color:#444;line-height:1.5;margin:0">${r.comment || ''}</p>
+      </div>
+    `;
+  }).join('');
+}
+
+async function submitReview(event) {
+  event.preventDefault();
+  if (!_prod) return;
+  const rating = parseInt(document.getElementById('reviewRating').value);
+  const comment = document.getElementById('reviewComment').value.trim();
+  
+  try {
+    const res = await api('POST', `/products/${_prod.id}/reviews`, { rating, comment });
+    showToast(res.message, 'success');
+    document.getElementById('reviewComment').value = '';
+    // Reload reviews list
+    loadReviews(_prod.id);
+    // Update product rating display (stars and text)
+    const newRating = res.avg_rating;
+    _prod.rating = newRating;
+    const stars = '★'.repeat(Math.round(newRating)) + '☆'.repeat(5 - Math.round(newRating));
+    document.getElementById('pdStars').textContent = stars;
+    document.getElementById('pdRating').textContent = `${newRating} / 5`;
+  } catch(err) {
+    showToast(err.message, 'error');
+  }
+}
 </script>
 </body>
 </html>

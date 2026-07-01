@@ -27,27 +27,59 @@
   <p class="page-sub" id="shopSub">Loading...</p>
 </div>
 <div class="shop-wrap">
-  <aside class="sidebar">
-    <div class="filter-block">
-      <h5>Category</h5>
-      <div class="filter-opts">
-        <label class="filter-opt"><input type="radio" name="cat" value="" checked onchange="applyFilters()"> All Categories</label>
-        <label class="filter-opt"><input type="radio" name="cat" value="Tops" onchange="applyFilters()"> Tops & Tees</label>
-        <label class="filter-opt"><input type="radio" name="cat" value="Hoodies" onchange="applyFilters()"> Hoodies</label>
-        <label class="filter-opt"><input type="radio" name="cat" value="Bottoms" onchange="applyFilters()"> Bottoms</label>
-        <label class="filter-opt"><input type="radio" name="cat" value="Outerwear" onchange="applyFilters()"> Outerwear</label>
-        <label class="filter-opt"><input type="radio" name="cat" value="Accessories" onchange="applyFilters()"> Accessories</label>
-        <label class="filter-opt"><input type="radio" name="cat" value="Footwear" onchange="applyFilters()"> Footwear</label>
-      </div>
-    </div>
+  <aside class="sidebar" style="background:#fff;padding:1.5rem;border-radius:10px;box-shadow:var(--shadow-sm);border:1px solid var(--border)">
     <div class="filter-block">
       <h5>Sort By</h5>
-      <select class="sort-sel" onchange="applyFilters()" id="sortSel" style="width:100%;font-size:0.85rem">
+      <select class="sort-sel" onchange="applyFilters()" id="sortSel" style="width:100%;font-size:0.85rem;padding:0.4rem;border-radius:6px;border:1px solid #ddd">
         <option value="newest">Newest First</option>
         <option value="price_asc">Price: Low to High</option>
         <option value="price_desc">Price: High to Low</option>
         <option value="rating">Top Rated</option>
       </select>
+    </div>
+    <div class="filter-block">
+      <h5>Category</h5>
+      <div class="filter-opts">
+        <label class="filter-opt"><input type="checkbox" name="cat" value="Tops" onchange="applyFilters()"> Tops & Tees</label>
+        <label class="filter-opt"><input type="checkbox" name="cat" value="Hoodies" onchange="applyFilters()"> Hoodies</label>
+        <label class="filter-opt"><input type="checkbox" name="cat" value="Bottoms" onchange="applyFilters()"> Bottoms</label>
+        <label class="filter-opt"><input type="checkbox" name="cat" value="Outerwear" onchange="applyFilters()"> Outerwear</label>
+        <label class="filter-opt"><input type="checkbox" name="cat" value="Accessories" onchange="applyFilters()"> Accessories</label>
+        <label class="filter-opt"><input type="checkbox" name="cat" value="Footwear" onchange="applyFilters()"> Footwear</label>
+      </div>
+    </div>
+    <div class="filter-block">
+      <h5>Price Range</h5>
+      <input type="range" id="priceRange" min="0" max="5000" step="100" value="5000" oninput="updatePriceLabel(this.value)" onchange="applyFilters()" style="width:100%"/>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:0.25rem">Max Price: <span id="priceLabel">₹5,000</span></div>
+    </div>
+    <div class="filter-block">
+      <h5>Sizes</h5>
+      <div class="filter-opts">
+        <label class="filter-opt"><input type="checkbox" name="size" value="XS" onchange="applyFilters()"> XS</label>
+        <label class="filter-opt"><input type="checkbox" name="size" value="S" onchange="applyFilters()"> S</label>
+        <label class="filter-opt"><input type="checkbox" name="size" value="M" onchange="applyFilters()"> M</label>
+        <label class="filter-opt"><input type="checkbox" name="size" value="L" onchange="applyFilters()"> L</label>
+        <label class="filter-opt"><input type="checkbox" name="size" value="XL" onchange="applyFilters()"> XL</label>
+        <label class="filter-opt"><input type="checkbox" name="size" value="XXL" onchange="applyFilters()"> XXL</label>
+      </div>
+    </div>
+    <div class="filter-block">
+      <h5>Colors</h5>
+      <div class="filter-opts">
+        <label class="filter-opt"><input type="checkbox" name="color" value="Black" onchange="applyFilters()"> Black</label>
+        <label class="filter-opt"><input type="checkbox" name="color" value="White" onchange="applyFilters()"> White</label>
+        <label class="filter-opt"><input type="checkbox" name="color" value="Grey" onchange="applyFilters()"> Grey</label>
+        <label class="filter-opt"><input type="checkbox" name="color" value="Navy" onchange="applyFilters()"> Navy</label>
+        <label class="filter-opt"><input type="checkbox" name="color" value="Sand Tan" onchange="applyFilters()"> Sand Tan</label>
+        <label class="filter-opt"><input type="checkbox" name="color" value="Charcoal" onchange="applyFilters()"> Charcoal</label>
+      </div>
+    </div>
+    <div class="filter-block">
+      <h5>Availability</h5>
+      <div class="filter-opts">
+        <label class="filter-opt"><input type="checkbox" id="inStockCheck" onchange="applyFilters()"> In Stock Only</label>
+      </div>
     </div>
     <div class="filter-block">
       <h5>Badge</h5>
@@ -81,21 +113,46 @@
 
 <script>
 let currentPage = 1;
+
+function updatePriceLabel(val) {
+  document.getElementById('priceLabel').textContent = '₹' + parseInt(val).toLocaleString('en-IN');
+}
+
 async function applyFilters(page) {
   currentPage = page || 1;
-  const cat   = document.querySelector('input[name=cat]:checked').value;
+  
+  const selectedCats = Array.from(document.querySelectorAll('input[name=cat]:checked')).map(el => el.value);
+  const selectedSizes = Array.from(document.querySelectorAll('input[name=size]:checked')).map(el => el.value);
+  const selectedColors = Array.from(document.querySelectorAll('input[name=color]:checked')).map(el => el.value);
+  const inStock = document.getElementById('inStockCheck').checked ? 1 : 0;
+  const maxPrice = parseFloat(document.getElementById('priceRange').value);
+  
   const badge = document.querySelector('input[name=badge]:checked').value;
   const sort  = document.getElementById('sortSel').value;
+  
   const params = new URLSearchParams({ page: currentPage, per_page: 12, sort });
-  if (cat)   params.set('category', cat);
+  
+  if (selectedCats.length) params.set('categories', selectedCats.join(','));
+  if (selectedSizes.length) params.set('sizes', selectedSizes.join(','));
+  if (selectedColors.length) params.set('colors', selectedColors.join(','));
+  if (inStock) params.set('in_stock', '1');
+  if (maxPrice < 5000) params.set('max_price', maxPrice);
   if (badge) params.set('badge', badge);
+  
+  const q = new URLSearchParams(location.search).get('search');
+  if (q) params.set('search', q);
+  
   try {
     const data = await api('GET', '/products?' + params.toString());
     const grid = document.getElementById('shopGrid');
-    if (!data.items.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem;color:#999">No products found.</div>'; }
-    else grid.innerHTML = data.items.map(renderCard).join('');
+    if (!data.items.length) { 
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem;color:#999">No products found matching filters.</div>'; 
+    } else { 
+      grid.innerHTML = data.items.map(renderCard).join(''); 
+    }
     document.getElementById('shopSub').textContent = data.total + ' products';
     document.getElementById('shopCount').innerHTML = 'Showing <b>' + data.items.length + '</b> of <b>' + data.total + '</b> products';
+    
     // pagination
     const pag = document.getElementById('shopPagination');
     pag.innerHTML = '';
@@ -106,13 +163,21 @@ async function applyFilters(page) {
       btn.onclick = () => applyFilters(i);
       pag.appendChild(btn);
     }
-  } catch(e) { showToast('Failed to load products', 'error'); }
+  } catch(e) { 
+    showToast('Failed to load products', 'error'); 
+  }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
-  // check URL params
   const p = new URLSearchParams(location.search);
-  if (p.get('category')) { const r = document.querySelector('input[value="'+p.get('category')+'"]'); if(r) r.checked=true; }
-  if (p.get('badge')) { const r = document.querySelector('input[name=badge][value="'+p.get('badge')+'"]'); if(r) r.checked=true; }
+  if (p.get('category')) { 
+    const r = document.querySelector('input[value="'+p.get('category')+'"]'); 
+    if(r) r.checked=true; 
+  }
+  if (p.get('badge')) { 
+    const r = document.querySelector('input[name=badge][value="'+p.get('badge')+'"]'); 
+    if(r) r.checked=true; 
+  }
   applyFilters();
 });
 </script>

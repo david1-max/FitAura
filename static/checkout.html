@@ -116,8 +116,10 @@
       <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.25rem">Order Summary</h3>
       <div class="chk-items" id="chkItems"></div>
       <div class="sum-row"><span>Subtotal</span><span id="chkSub">—</span></div>
-      <div class="sum-row"><span>GST (18%)</span><span id="chkGst">—</span></div>
+      <div class="sum-row" id="chkDiscountRow" style="display:none"><span>Discount</span><span id="chkDiscount">—</span></div>
       <div class="sum-row"><span>Delivery</span><span id="chkDel">Free</span></div>
+      <div class="sum-row" id="chkCodRow" style="display:none"><span>COD Convenience Fee</span><span id="chkCodFee">₹49</span></div>
+      <div class="sum-row"><span>GST (18%)</span><span id="chkGst">—</span></div>
       <div class="sum-total"><span>Total</span><span class="sum-total-val" id="chkTotal">—</span></div>
       <button class="btn-gold btn-full place-btn" id="placeBtn" onclick="placeOrder()">Place Order →</button>
       <p class="secure">🔒 Secured with SSL encryption</p>
@@ -140,14 +142,70 @@ let delType = 'standard';
 let payMethod = 'card';
 let chkCart = null;
 
+async function recalculateSummary() {
+  if (!chkCart) return;
+  const sub = chkCart.subtotal;
+  
+  // 1. Get coupon discount
+  let discount = 0;
+  const couponCode = localStorage.getItem('drip_coupon') || '';
+  if (couponCode) {
+    try {
+      const c = await api('POST', '/coupon', { code: couponCode });
+      if (sub >= c.min_order) {
+        if (c.type === 'percent') {
+          discount = Math.round(sub * c.value / 100);
+        } else {
+          discount = c.value;
+        }
+        document.getElementById('chkDiscountRow').style.display = 'flex';
+        document.getElementById('chkDiscount').textContent = '-' + rupee(discount);
+      } else {
+        document.getElementById('chkDiscountRow').style.display = 'none';
+      }
+    } catch(e) {
+      document.getElementById('chkDiscountRow').style.display = 'none';
+    }
+  } else {
+    document.getElementById('chkDiscountRow').style.display = 'none';
+  }
+
+  // 2. Get delivery fee
+  let delivery = 0;
+  if (delType === 'express') delivery = 149;
+  else if (delType === 'same_day') delivery = 299;
+  document.getElementById('chkDel').textContent = delivery > 0 ? rupee(delivery) : 'Free';
+
+  // 3. Get COD fee
+  let codFee = 0;
+  if (payMethod === 'cod') {
+    codFee = 49;
+    document.getElementById('chkCodRow').style.display = 'flex';
+  } else {
+    document.getElementById('chkCodRow').style.display = 'none';
+  }
+
+  // 4. Calculate GST & Total (matching backend)
+  const deliveryTotal = delivery + codFee;
+  const taxableAmount = Math.max(0, sub - discount + deliveryTotal);
+  const gst = Math.round(taxableAmount * 0.18 * 100) / 100;
+  const total = Math.round((taxableAmount + gst) * 100) / 100;
+
+  document.getElementById('chkSub').textContent = rupee(sub);
+  document.getElementById('chkGst').textContent = rupee(gst);
+  document.getElementById('chkTotal').textContent = rupee(total);
+}
+
 function selectDel(el, type) {
   document.querySelectorAll('.del-opt').forEach(o => { o.classList.remove('on'); o.querySelector('input').checked=false; });
   el.classList.add('on'); el.querySelector('input').checked=true; delType=type;
+  recalculateSummary();
 }
 function switchPay(tab, btn) {
   document.querySelectorAll('.pay-tab').forEach(b => b.classList.remove('on'));
   document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('on'));
   btn.classList.add('on'); document.getElementById('pay-'+tab).classList.add('on'); payMethod=tab;
+  recalculateSummary();
 }
 
 async function loadChkCart() {
@@ -163,10 +221,9 @@ async function loadChkCart() {
         <div style="flex:1"><div style="font-size:0.85rem;font-weight:500">${item.product.name}</div><div style="font-size:0.75rem;color:#999">${item.size||''} ${item.color?'· '+item.color:''}</div></div>
         <span class="chk-item-price">${rupee(item.product.price*item.quantity)}</span>
       </div>`).join('');
-    const gst = Math.round(data.subtotal * 0.18);
-    document.getElementById('chkSub').textContent = rupee(data.subtotal);
-    document.getElementById('chkGst').textContent = rupee(gst);
-    document.getElementById('chkTotal').textContent = rupee(data.subtotal + gst);
+    
+    await recalculateSummary();
+
     // prefill from session
     const user = getUser();
     if (user) { document.getElementById('chk-fn').value=user.first_name||''; document.getElementById('chk-ln').value=user.last_name||''; document.getElementById('chk-email').value=user.email||''; document.getElementById('chk-phone').value=user.phone||''; }

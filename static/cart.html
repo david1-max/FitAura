@@ -68,7 +68,7 @@
 <script>
 let cartDiscount = 0;
 async function loadCart() {
-  if (!isLoggedIn()) { document.getElementById('cartItems').innerHTML = '<div style="text-align:center;padding:3rem"><p style="font-size:1.1rem;margin-bottom:1rem">Please login to view cart</p><button class="btn-gold" onclick="location.href='/login.html'">Login →</button></div>'; return; }
+  if (!isLoggedIn()) { document.getElementById('cartItems').innerHTML = '<div style="text-align:center;padding:3rem"><p style="font-size:1.1rem;margin-bottom:1rem">Please login to view cart</p><button class="btn-gold" onclick="location.href=\'/login.html\'">Login →</button></div>'; return; }
   try {
     const data = await api('GET', '/cart');
     renderCart(data);
@@ -86,7 +86,7 @@ function renderCart(data) {
   document.getElementById('sumTotal').textContent = rupee(total);
   if (disc > 0) { document.getElementById('sumSaving').style.display='block'; document.getElementById('sumSaving').textContent = 'You save ' + rupee(disc) + '!'; }
   if (!data.items.length) {
-    document.getElementById('cartItems').innerHTML = '<div style="text-align:center;padding:3rem;background:#fff;border-radius:10px"><p style="font-size:1.2rem;font-family:'Playfair Display',serif;margin-bottom:1rem">Your cart is empty</p><button class="btn-gold" onclick="location.href='/shop.html'">Start Shopping →</button></div>';
+    document.getElementById('cartItems').innerHTML = '<div style="text-align:center;padding:3rem;background:#fff;border-radius:10px"><p style="font-size:1.2rem;font-family:\'Playfair Display\',serif;margin-bottom:1rem">Your cart is empty</p><button class="btn-gold" onclick="location.href=\'/shop.html\'">Start Shopping →</button></div>';
     return;
   }
   const emojis = {'Tops':'👕','Hoodies':'🧥','Bottoms':'👖','Outerwear':'🧤','Accessories':'🎒','Footwear':'👟'};

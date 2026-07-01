@@ -37,6 +37,10 @@
     <div class="oinfo"><label>Status</label><span id="trStatus" style="color:#b8860b;font-weight:700"></span></div>
   </div>
 
+  <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem;margin-top:-0.5rem">
+    <button class="btn-outline" onclick="downloadInvoicePDF()" style="padding:0.45rem 1rem;font-size:0.75rem">+ Download Invoice (PDF)</button>
+  </div>
+
   <div class="tracker">
     <div class="track-step done" id="ts0"><div class="track-dot">✓</div><div class="track-label">Placed</div></div>
     <div class="track-connector done" id="tc0"></div>
@@ -65,11 +69,14 @@
 <div id="toast"></div>
 <script src="/static/app.js"></script>
 <script>
+let currentOrderNum = '';
+
 async function trackOrder(){
   const id=document.getElementById('trackId').value.trim();
   if(!id){showToast('Please enter your order ID','error');return;}
   try{
     const order=await api('GET','/track/'+id);
+    currentOrderNum = order.order_number;
     document.getElementById('trackResult').style.display='block';
     document.getElementById('trNum').textContent=order.order_number;
     document.getElementById('trDate').textContent=order.placed_at;
@@ -94,6 +101,11 @@ async function trackOrder(){
     const msg = e.message || 'Order not found. Please check your order ID.';
     showToast(msg, 'error');
   }
+}
+
+function downloadInvoicePDF() {
+  if (!currentOrderNum) return;
+  window.open(`/api/orders/${currentOrderNum}/invoice`, '_blank');
 }
 
 function updateTracker(status){
