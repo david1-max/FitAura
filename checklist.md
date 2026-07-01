@@ -65,3 +65,25 @@ Follow this checklist once you deploy the FitAura website to PythonAnywhere to e
 - [ ] Create a free **Google Business Profile** listing your storefront brand.
 - [ ] Link your store URL on social media bios (Instagram, TikTok, YouTube).
 - [ ] Encourage backlinks from blogs and fashion catalogs to boost domain authority rankings.
+
+---
+
+## 6. Optional: Transition to a Plant E-Commerce Store
+If you want to sell plants instead of or in addition to clothing, follow these steps to adapt the storefront:
+- [ ] **Adjust Product Attributes in Admin Panel:**
+  - Create categories like `Indoor Plants`, `Succulents`, `Planters`, or `Soil & Seeds`.
+  - Use `Sizes` to represent pot diameter (e.g., `4-inch`, `6-inch`, `8-inch`) or plant height (`Small`, `Medium`, `Large`).
+  - Use `Colors` to represent pot designs or plant variations.
+- [ ] **Branding & Copy Adjustments:**
+  - Update the storefront logo text in nav tags (e.g., change `DRIP` to `FloraAura` or `FitFlora`).
+  - Change subheadings on homepage/about page from "premium streetwear" to "indoor plants & organic greenery".
+- [ ] **Fallback Asset Emojis:**
+  - Inside [app.js](file:///C:/Users/USER/Documents/antigravity/happy-rutherford/FitAura/static/app.js) and [product.html](file:///C:/Users/USER/Documents/antigravity/happy-rutherford/FitAura/static/product.html), update the default fallback emojis mapping dictionary from clothing items (👕, 👖, 🧥) to plant items (🪴, 🌿, 🌵, 🌸):
+    ```javascript
+    const EMOJI = {
+      'Indoor Plants': '🪴',
+      'Succulents': '🌵',
+      'Flowering': '🌸',
+      'Accessories': '🏺'
+    };
+    ```
