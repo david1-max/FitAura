@@ -45,19 +45,12 @@ Once started, visit the store in your browser:
 
 ---
 
-## Administration Portal & Credentials
+## Administration Portal
 
 To log into the management console:
-1. Navigate to `/login.html` and use these admin details:
-   - **Email:** `davidkumar817@gmail.com`
-   - **Password:** `admin123`
-2. Once authenticated, visit the **Admin Panel:** `/admin.html`
-
-To test standard customer flows:
-- **Email:** `premiumtest@gmail.com`
-- **Password:** `password123`
-
----
+1. Register a new user account at the `/register.html` page.
+2. Log in with the administrator credentials initialized in the database seed, or promote an existing account through direct database query.
+3. Once authenticated, access the dashboard at `/admin.html`.
 
 ## Codebase Structure
 - `main.py` — Core FastAPI REST endpoints, auth checks, file upload endpoints, and PDF generators.
